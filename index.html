@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ayushi — Python, Data Analytics &amp; Engineering Portfolio</title>
+<meta name="description" content="Portfolio of Ayushi — B.Tech graduate working in data analytics, data engineering and Python. SQL, PySpark, Kafka, Power BI, FastAPI and applied NLP." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@400..700&family=Space+Grotesk:wght@400..700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f6f3ec;
+    --paper-2:#efe9dc;
+    --card:#fffdf8;
+    --ink:#171310;
+    --ink-soft:#5a5346;
+    --hl-yellow:#ffd54a;
+    --hl-pink:#ff9ac1;
+    --hl-mint:#8fe3c0;
+    --hl-blue:#8fcbff;
+    --hl-lilac:#c9b6ff;
+    --hl-orange:#ffb067;
+    --radius:0px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .hand{font-family:"Caveat","Space Grotesk",cursive; font-weight:700;}
+  .display{font-family:"Archivo Black", ui-sans-serif, sans-serif; letter-spacing:-0.01em;}
+  .mono{font-family:"Space Mono", monospace;}
+
+  /* ---- browser frame shell (matches reference chrome-bar look) ---- */
+  .frame{
+    max-width:none;
+    margin:0;
+    background:var(--paper);
+    border:none;
+    box-shadow:none;
+    background-image:
+      radial-gradient(var(--ink-soft) 0.6px, transparent 0.6px);
+    background-size:22px 22px;
+    background-color:var(--paper);
+    background-blend-mode:overlay;
+    opacity:1;
+    overflow:hidden;
+  }
+  .chrome-bar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:10px 16px;
+    background:var(--card);
+    border-bottom:2px solid var(--ink);
+    position:sticky;
+    top:0;
+    z-index:50;
+    flex-wrap:wrap;
+  }
+  .dots{display:flex; gap:6px; flex:0 0 auto;}
+  .dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--ink);}
+  .dot.red{background:#ff6b57;}
+  .dot.yellow{background:#ffd54a;}
+  .dot.green{background:#7fd88a;}
+  .chrome-nav{
+    display:flex; gap:4px; flex:1 1 auto; justify-content:center;
+    flex-wrap:wrap;
+  }
+  .chrome-nav a{
+    font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    padding:6px 10px; border:1.5px solid transparent; color:var(--ink-soft);
+    text-decoration:none; transition:.15s; white-space:nowrap;
+  }
+  .chrome-nav a:hover{border-color:var(--ink); color:var(--ink); background:var(--paper-2);}
+  .chrome-right{display:flex; align-items:center; gap:10px; flex:0 0 auto;}
+  .status-dot{width:8px;height:8px;border-radius:50%;}
+  .btn-contact{
+    font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+    background:var(--ink); color:var(--paper); padding:7px 14px; border:1.5px solid var(--ink);
+    text-decoration:none;
+  }
+
+  section{padding:44px 20px;}
+  @media(min-width:600px){section{padding:56px 32px;}}
+  @media(min-width:768px){section{padding:72px 48px;}}
+  @media(min-width:1100px){section{padding:88px 56px;}}
+
+  .eyebrow{font-family:"Caveat"; font-weight:700; font-size:clamp(18px,4vw,22px); color:var(--ink-soft); margin:0;}
+  .h-section{font-family:"Archivo Black"; text-transform:uppercase; font-size:clamp(32px,9vw,60px); line-height:.95; margin:4px 0 0;}
+
+  /* chips / pills */
+  .chip{
+    display:inline-flex; align-items:center; gap:6px;
+    border:1.5px solid var(--ink); padding:5px 12px;
+    font-size:12px; font-weight:700; letter-spacing:.02em;
+    background:var(--card);
+  }
+  .chip.y{background:var(--hl-yellow);} .chip.p{background:var(--hl-pink);}
+  .chip.m{background:var(--hl-mint);} .chip.b{background:var(--hl-blue);}
+  .chip.l{background:var(--hl-lilac);} .chip.o{background:var(--hl-orange);}
+
+  /* sticky note */
+  .sticky{border:1.5px solid var(--ink); padding:20px; box-shadow:4px 4px 0 0 var(--ink);}
+  .sticky.y{background:var(--hl-yellow);} .sticky.p{background:var(--hl-pink);}
+  .sticky.m{background:var(--hl-mint);} .sticky.b{background:var(--hl-blue);}
+  .tilt-l{transform:rotate(-1.6deg);} .tilt-r{transform:rotate(1.6deg);}
+
+  /* paper card */
+  .paper-card{border:1.5px solid var(--ink); background:var(--card); position:relative;}
+  .paper-soft{border:1.5px solid var(--ink); background:var(--card);}
+
+  /* tape */
+  .tape{
+    position:absolute; width:64px; height:22px; top:-11px;
+    background:rgba(255,213,74,.55); border:1px solid rgba(23,19,16,.25);
+  }
+
+  /* polaroid */
+  .polaroid{border:1.5px solid var(--ink); background:var(--card); padding:10px 10px 30px; box-shadow:5px 5px 0 0 var(--ink);}
+  .polaroid figcaption{font-family:"Caveat"; font-weight:700; font-size:20px; text-align:center; margin-top:8px;}
+
+  .avatar-mono{
+    aspect-ratio:4/5; width:100%; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(155deg, var(--hl-pink), var(--hl-yellow));
+    border:1.5px solid var(--ink);
+  }
+  .avatar-mono span{font-family:"Archivo Black"; font-size:96px; color:var(--ink); opacity:.92;}
+
+  .marker-underline{background-image:linear-gradient(transparent 60%, var(--hl-yellow) 60%); }
+
+  .stamp{
+    width:70px;height:70px;border-radius:50%; border:1.5px solid var(--ink);
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    font-family:"Archivo Black"; font-size:10px; letter-spacing:.03em; line-height:1.15; text-transform:uppercase;
+  }
+
+  /* browser-chrome mockup used inside project cards */
+  .mock{border:1.5px solid var(--ink); background:var(--card); overflow:hidden;}
+  .mock-bar{display:flex; gap:5px; padding:7px 9px; border-bottom:1.5px solid var(--ink); background:var(--paper-2);}
+  .mock-dot{width:7px;height:7px;border-radius:50%; border:1px solid var(--ink);}
+  .mock-body{padding:14px; min-height:150px;}
+
+  .btn-ink{
+    display:inline-flex; align-items:center; gap:8px; border:1.5px solid var(--ink);
+    background:var(--ink); color:var(--paper); padding:11px 20px;
+    font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase;
+    text-decoration:none; box-shadow:3px 3px 0 0 var(--hl-yellow); transition:transform .12s;
+  }
+  .btn-ink:hover{transform:translateY(-2px);}
+  .btn-outline{
+    display:inline-flex; align-items:center; gap:8px; border:1.5px solid var(--ink);
+    background:transparent; color:var(--ink); padding:11px 20px;
+    font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase;
+    text-decoration:none; box-shadow:3px 3px 0 0 var(--ink); transition:transform .12s;
+  }
+  .btn-outline:hover{transform:translateY(-2px);}
+   .email-hover {
+  position: relative;
+  padding: 12px 18px;
+  border: 1.5px solid var(--ink);
+  background: var(--card);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: default;
+  overflow: hidden;
+  transition: .25s ease;
+}
+
+.email-hover .email-address {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  color: var(--paper);
+  opacity: 0;
+  transform: translateY(100%);
+  transition: .25s ease;
+  font-size: 12px;
+}
+
+.email-hover:hover .email-address {
+  opacity: 1;
+  transform: translateY(0);
+}
+  .split-panel{display:grid; grid-template-columns:1fr; border:1.5px solid var(--ink);}
+  @media(min-width:900px){.split-panel{grid-template-columns:1.1fr 1fr;}}
+  .split-dark{background:var(--ink); color:var(--paper); padding:24px;}
+  .split-light{background:var(--card); padding:24px;}
+  @media(min-width:768px){.split-dark,.split-light{padding:34px;}}
+
+  .stat-box{border:1.5px solid var(--ink); background:var(--card); padding:14px; text-align:center;}
+  .stat-box .val{font-family:"Archivo Black"; font-size:clamp(18px,4vw,26px);}
+  .stat-box .lab{font-size:10px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft);}
+
+  .tool-badge{
+    border:1.5px solid var(--ink); background:var(--card); padding:9px 16px;
+    font-family:"Space Mono"; font-size:12px; font-weight:700;
+  }
+
+  input,textarea{font-family:"Space Grotesk"; font-size:14px;}
+  textarea:focus,input:focus{outline:none; box-shadow:3px 3px 0 0 var(--hl-yellow);}
+
+  footer{border-top:2px solid var(--ink); padding:18px 20px; text-align:center; font-size:12px; color:var(--ink-soft);}
+
+  img{max-width:100%; height:auto;}
+
+  @media(max-width:480px){
+    .stamp{width:56px; height:56px; font-size:9px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="frame">
+
+  <!-- ===== chrome bar (matches reference top bar exactly) ===== -->
+  <div class="chrome-bar">
+    <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+    <nav class="chrome-nav">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#playground">Playground</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="chrome-right">
+      <span class="status-dot" style="background:var(--hl-mint); border:1px solid var(--ink)"></span>
+      <span class="status-dot" style="background:var(--hl-pink); border:1px solid var(--ink)"></span>
+      <a class="btn-contact" href="#contact">Contact</a>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section id="home" style="text-align:center; position:relative;">
+    <span class="stamp" style="position:absolute; left:8px; top:8px; background:var(--hl-yellow); transform:rotate(-8deg);">open<br/>to work</span>
+    <span class="stamp" style="position:absolute; right:8px; top:40px; background:var(--hl-mint); transform:rotate(6deg);">2026<br/>grad</span>
+
+    <p class="hand eyebrow">hey, i'm</p>
+    <div style="position:relative; display:inline-block; margin-top:10px; max-width:100%;">
+      <span class="tape" style="left:-18px; top:-10px; transform:rotate(-10deg);"></span>
+      <span class="tape" style="right:-18px; top:-10px; transform:rotate(10deg);"></span>
+      <h1 class="display" style="font-size:clamp(38px,10vw,64px); padding:6px 20px; border:2.5px solid var(--hl-pink); text-transform:uppercase; margin:0;">AYUSHI</h1>
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:18px;">
+      <span class="chip m">B.Tech Graduate</span>
+      <span class="chip y">Python Developer</span>
+      <span class="chip b">Data Analytics</span>
+      <span class="chip l">Data Engineering</span>
+    </div>
+
+    <p style="max-width:640px; margin:22px auto 0; font-size:clamp(17px,3.6vw,24px); font-weight:600; line-height:1.35;">
+      I build <span class="marker-underline">Python</span>-powered applications and data systems that turn messy data into useful, real-world solutions.✿
+    </p>
+
+    <div style="display:flex; gap:12px; justify-content:center; margin-top:26px; flex-wrap:wrap;">
+      <a class="btn-ink" href="#work">See my work</a>
+      <a class="btn-outline" href="#contact">Hire me</a>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+<section id="about">
+  <p class="hand eyebrow">about me</p>
+  <h2 class="h-section">About</h2>
+
+  <div style="display:grid; grid-template-columns:1fr; gap:24px; margin-top:26px;">
+    <div style="display:grid; grid-template-columns:1fr; gap:20px;" class="about-grid">
+
+      <div style="order:2;" class="about-main">
+
+
+
+        <div class="paper-soft" style="padding:20px; margin-top:0; font-size:15px; line-height:1.7;">
+          <p>
+            I like working across the data journey — from cleaning and exploring
+            data to building models, pipelines and simple applications around it.
+          </p>
+
+          <p>
+            I've worked with Python, SQL, Pandas, Scikit-learn, PySpark, Kafka
+            and Power BI, and I've built projects around analytics, machine
+            learning, NLP and data engineering.
+          </p>
+
+          <p>
+            I enjoy learning new things, building practical projects, and turning
+            data into something useful.
+          </p>
+        </div>
+
+        <div class="paper-card" style="padding:20px; margin-top:16px; position:relative;">
+          <span class="tape" style="left:34px; top:-11px; transform:rotate(-6deg);"></span>
+
+          <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:0;">
+            ▸ things I enjoy working with
+          </p>
+
+          <ul style="margin:14px 0 0; padding:0; list-style:none; font-size:14px; line-height:1.7;">
+            <li>▸ Python &amp; SQL</li>
+            <li>▸ Data analysis &amp; visualization</li>
+            <li>▸ Machine learning &amp; NLP</li>
+            <li>▸ Data pipelines &amp; processing</li>
+            <li>▸ APIs &amp; data-driven applications</li>
+          </ul>
+
+          <pre class="mono" style="margin-top:16px; background:var(--ink); color:var(--paper); padding:14px; font-size:12px; overflow-x:auto; white-space:pre-wrap; word-break:break-word;">&gt;&gt;&gt; from ayushi import skills
+&gt;&gt;&gt; skills.top(3)
+['python', 'sql', 'data science']
+&gt;&gt;&gt; skills.status
+'open to work ✿'</pre>
+        </div>
+        <div style="margin-top:16px;">
+          <p class="hand" style="font-size:19px; color:var(--ink-soft); margin-bottom:10px;">
+            what I work with
+          </p>
+
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <span class="chip y">Python</span>
+<span class="chip o">SQL</span>
+<span class="chip m">Pandas / NumPy</span>
+<span class="chip b">Power BI</span>
+<span class="chip m">PostgreSQL / MySQL</span>
+<span class="chip p">FastAPI</span>
+<span class="chip l">Apache Kafka</span>
+<span class="chip o">ETL Pipelines</span>
+<span class="chip b">Dashboard Design</span>
+<span class="chip m">Git / GitHub</span>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ===== FEATURED WORK ===== -->
+  <section id="work">
+    <p class="hand eyebrow">the good stuff</p>
+    <h2 class="h-section">Projects</h2>
+
+
+    <!-- ===== project 01 detail ===== -->
+    <div id="p1" style="margin-top:36px; scroll-margin-top:70px;">
+      <div class="split-panel">
+        <div class="split-dark">
+          <span class="mono" style="font-size:11px; letter-spacing:.1em; opacity:.7;">PROJECT 01</span>
+          <h3 class="display" style="font-size:clamp(24px,5vw,34px); text-transform:uppercase; margin:8px 0 4px;">Beauty Analytics</h3>
+          <p class="hand" style="font-size:20px; opacity:.85; margin:0 0 14px;">Semantic search and sentiment over 3.7M Sephora reviews.</p>
+          <p style="font-size:14px; line-height:1.7; opacity:.9;">Star ratings flatten everything. A 4.4 tells you nothing about whether a
+            cleanser breaks out acne-prone skin or whether people only hate the pump. This tool lets the
+            review text itself answer the buying question — searchable by meaning across 8K products.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:16px;">
+            <span class="chip m" style="color:var(--ink);">React</span><span class="chip y" style="color:var(--ink);">FastAPI</span>
+            <span class="chip p" style="color:var(--ink);">SentenceTransformers</span><span class="chip b" style="color:var(--ink);">VADER</span>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:20px;">
+           <a class="btn-ink" style="margin:0;" href="https://github.com/ayushi771/beauty-analytics" target="_blank" rel="noreferrer">Github link ↗</a>
+          <a class="btn-ink" style="margin:0;" href="https://beauty-analytics-murex.vercel.app" target="_blank" rel="noreferrer">Live demo ↗</a>
+          </div>
+        </div>
+        <div class="split-light">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(90px,1fr)); gap:10px;">
+            <div class="stat-box"><div class="val">3.7M</div><div class="lab">reviews processed</div></div>
+            <div class="stat-box"><div class="val">8K</div><div class="lab">products indexed</div></div>
+            <div class="stat-box"><div class="val">&lt;1s</div><div class="lab">search response</div></div>
+          </div>
+          <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:20px 0 8px;">what I built</p>
+          <ul style="margin:0; padding:0; list-style:none; font-size:13.5px; line-height:1.7;">
+            <li>▸ Precomputed sentence-transformer embeddings for millisecond semantic search</li>
+            <li>▸ Aspect-level sentiment across texture, results, price, packaging, scent</li>
+            <li>▸ INCI-list ingredient safety analyzer flagged against skin type</li>
+            <li>▸ Groq-generated verdicts grounded in retrieved review evidence</li>
+          </ul>
+          <p class="hand" style="font-size:18px; margin-top:16px;"><span class="marker-underline">what I learned:</span> precomputation is a design decision, not an optimization.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== project 02 detail ===== -->
+    <div id="p2" style="margin-top:24px; scroll-margin-top:70px;">
+      <div class="split-panel">
+        <div class="split-light">
+          <span class="mono" style="font-size:11px; letter-spacing:.1em; color:var(--ink-soft);">PROJECT 02</span>
+          <h3 class="display" style="font-size:clamp(24px,5vw,34px); text-transform:uppercase; margin:8px 0 4px;">Bliss Salon Analytics</h3>
+          <p class="hand" style="font-size:20px; color:var(--ink-soft); margin:0 0 14px;">Kafka to PySpark to Postgres to live Power BI.</p>
+          <p style="font-size:14px; line-height:1.7;">A multi-branch salon chain reviewed performance from a spreadsheet exported
+            once a week. No-shows, inventory dips and staff load were discovered days too late to act on —
+            so I built a live pipeline instead.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:16px;">
+            <span class="chip b">Apache Kafka</span><span class="chip m">PySpark</span><span class="chip y">PostgreSQL</span><span class="chip l">Power BI / DAX</span>
+          </div>
+          <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:22px 0 8px;">what I built</p>
+          <ul style="margin:0; padding:0; list-style:none; font-size:13.5px; line-height:1.7;">
+            <li>▸ Dockerized Kafka topic fed by an appointment event generator</li>
+            <li>▸ PySpark Structured Streaming consumer validating and enriching into Postgres</li>
+            <li>▸ Gold analytics layer tuned for fast DirectQuery dashboards</li>
+            <li>▸ DAX measures for WoW revenue, no-show rate, branch ranking</li>
+          </ul>
+        </div>
+        <div class="split-dark" style="padding:16px;">
+
+  <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; opacity:.7; margin:0 0 10px;">
+    project preview
+  </p>
+
+  <div style="background:var(--paper); padding:6px;">
+    <img 
+      src="images/bliss-salon-preview.png"
+      alt="Bliss Salon Analytics Platform"
+      style="width:100%; height:auto; max-height:300px; object-fit:cover; display:block; background:#f5f5f7;"
+    >
+  </div>
+
+  <p style="font-size:14px; line-height:1.5; margin:12px 0 0; opacity:.9;">
+    A real-time salon analytics platform built with Kafka, PySpark, PostgreSQL and Power BI.
+  </p>
+
+  <div style="display:flex; gap:8px; margin-top:12px;">
+    <a class="btn-ink" style="margin:0;" href="https://github.com/ayushi771/bliss-salon-analytics" target="_blank" rel="noreferrer">
+      GitHub ↗
+    </a>
+
+  </div>
+
+</div>
+      </div>
+    </div>
+
+    <!-- ===== project 03 detail ===== -->
+   <div id="p3" style="margin-top:24px; scroll-margin-top:70px;">
+  <div class="split-panel">
+
+    <!-- LEFT -->
+    <div class="split-dark" style="padding:20px;">
+
+      <span class="mono" style="font-size:11px; letter-spacing:.1em; opacity:.7;">
+        PROJECT 03
+      </span>
+
+      <h3 class="display" style="font-size:clamp(22px,5vw,32px); text-transform:uppercase; margin:8px 0 4px;">
+        BI Portal
+      </h3>
+
+      <p class="hand" style="font-size:19px; opacity:.85; margin:0 0 16px;">
+        A secure, role-based portal for managing BI dashboards.
+      </p>
+
+      <!-- PROJECT IMAGE -->
+      <div style="background:var(--paper); padding:6px; margin-top:8px;">
+        <img 
+          src="images/bi-portal-preview.png"
+          alt="BI Portal project"
+          style="width:100%; height:auto; max-height:180px; object-fit:cover; display:block;"
+        >
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:14px;">
+        <span class="chip l" style="color:var(--ink);">FastAPI</span>
+        <span class="chip m" style="color:var(--ink);">SQLAlchemy</span>
+        <span class="chip y" style="color:var(--ink);">JWT</span>
+        <span class="chip b" style="color:var(--ink);">Superset</span>
+      </div>
+
+    </div>
+
+
+    <!-- RIGHT -->
+    <div class="split-light" style="padding:20px;">
+
+      <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:0 0 10px;">
+        the idea
+      </p>
+
+      <p style="font-size:14px; line-height:1.7; margin:0;">
+        A dashboard portal designed to give different users access to the
+        right BI resources through authentication and role-based permissions.
+      </p>
+
+      <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:20px 0 8px;">
+        what I built
+      </p>
+
+      <ul style="margin:0; padding:0; list-style:none; font-size:13.5px; line-height:1.7;">
+        <li>▸ JWT-based authentication and secure password handling</li>
+        <li>▸ Role-based access for admins and users</li>
+        <li>▸ Dashboard access through Apache Superset</li>
+        <li>▸ Admin tools for managing users and permissions</li>
+      </ul>
+
+      <div style="display:flex; gap:8px; margin-top:20px; flex-wrap:wrap;">
+        <a class="btn-ink" style="margin:0;" 
+           href="https://github.com/ayushi771/bi-portal"
+           target="_blank" rel="noreferrer">
+          GitHub ↗
+        </a>
+
+       
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+   <div id="p4" style="margin-top:24px; scroll-margin-top:70px;">
+  <div class="split-panel">
+
+    <!-- LEFT -->
+    <div class="split-light" style="padding:20px;">
+
+      <span class="mono" style="font-size:11px; letter-spacing:.1em; color:var(--ink-soft);">
+        PROJECT 04
+      </span>
+
+      <h3 class="display" style="font-size:clamp(22px,5vw,32px); text-transform:uppercase; margin:8px 0 4px;">
+        Tweet Detector
+      </h3>
+
+      <p class="hand" style="font-size:19px; color:var(--ink-soft); margin:0 0 14px;">
+        Is this tweet about a real disaster, or just a metaphor?
+      </p>
+
+      <p style="font-size:14px; line-height:1.7; margin:0;">
+        A text classification model that identifies whether a tweet
+        describes a real disaster or is simply using disaster-related
+        language metaphorically.
+      </p>
+
+      <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:16px;">
+        <span class="chip o">Scikit-learn</span>
+        <span class="chip p">PyTorch</span>
+        <span class="chip m">Streamlit</span>
+      </div>
+
+    </div>
+
+
+    <!-- RIGHT -->
+    <div class="split-dark" style="padding:20px;">
+
+      <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; opacity:.7; margin:0 0 10px;">
+        the project
+      </p>
+
+      <p style="font-size:14px; line-height:1.7; opacity:.9; margin:0;">
+        Built and deployed a machine learning classifier that processes
+        tweet text and predicts whether it refers to an actual disaster.
+      </p>
+
+      <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; opacity:.7; margin:20px 0 8px;">
+        what I worked on
+      </p>
+
+      <ul style="margin:0; padding:0; list-style:none; font-size:13.5px; line-height:1.7;">
+        <li>▸ Text preprocessing and feature extraction</li>
+        <li>▸ Machine learning model training and evaluation</li>
+        <li>▸ Classification of disaster vs. non-disaster tweets</li>
+        <li>▸ Streamlit interface for real-time predictions</li>
+      </ul>
+
+      <div style="display:flex; gap:8px; margin-top:20px; flex-wrap:wrap;">
+        <a class="btn-ink" style="margin:0;" 
+           href="https://github.com/ayushi771/tweet-detector"
+           target="_blank" rel="noreferrer">
+          GitHub ↗
+        </a>
+
+       
+      </div>
+
+    </div>
+
+  </div>
+</div>
+  </section>
+
+ <!-- ===== TOOLS ===== -->
+<section style="padding-top:0;">
+  <p class="hand" style="text-align:center; font-size:20px; color:var(--ink-soft);">
+    tools I use
+  </p>
+
+  <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:14px;">
+    <span class="tool-badge">Python</span>
+    <span class="tool-badge">SQL</span>
+    <span class="tool-badge">Pandas</span>
+    <span class="tool-badge">Power BI</span>
+    <span class="tool-badge">PySpark</span>
+    <span class="tool-badge">Kafka</span>
+    <span class="tool-badge">PostgreSQL</span>
+    <span class="tool-badge">Git</span>
+  </div>
+</section>
+
+
+<!-- ===== PLAYGROUND ===== -->
+<section id="playground">
+  <p class="hand eyebrow">a little extra</p>
+  <h2 class="h-section">Just For Fun</h2>
+
+  <div style="display:grid; grid-template-columns:1fr; gap:12px; margin-top:20px;" class="play-grid">
+
+    <div class="sticky y tilt-l">
+      <p style="font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:0;">
+        python
+      </p>
+      <p class="hand" style="font-size:17px; margin-top:7px;">
+        If there's a repetitive task, I'll probably try to automate it.
+      </p>
+    </div>
+
+    <div class="sticky m tilt-r">
+      <p style="font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:0;">
+        data
+      </p>
+      <p class="hand" style="font-size:17px; margin-top:7px;">
+        I like finding the interesting story hidden inside messy data.
+      </p>
+    </div>
+
+    <div class="sticky b tilt-l">
+      <p style="font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:0;">
+        currently
+      </p>
+      <p class="hand" style="font-size:17px; margin-top:7px;">
+        Learning, building, and looking for the next interesting problem.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <p class="hand eyebrow" style="text-align:center;">say hi</p>
+
+  <div style="text-align:center;">
+    <div class="stamp" style="margin:6px auto 0; width:64px; height:64px; background:var(--hl-yellow); font-size:26px;">
+      🙂
+    </div>
+
+    <h2 class="h-section" style="margin-top:10px;">
+      Let's Talk
+    </h2>
+
+    <p style="max-width:480px; margin:10px auto 0; font-size:15px; color:var(--ink-soft);">
+      Interested in working together? I'd love to hear from you.
+    </p>
+  </div>
+
+  <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-top:22px;">
+
+     <a href="mailto:ansomani1007@gmail.com" class=" btn-ink">
+    ✉ Email
+    <span>ansomani1007@gmail.com</span>
+  </a>
+
+    <a href="https://www.linkedin.com/in/ayushi-somani-108540301/"
+       target="_blank"
+       rel="noreferrer"
+       class="btn-ink"
+       style="margin:0;">
+      LinkedIn ↗
+    </a>
+
+    <a href="https://github.com/ayushi771"
+       target="_blank"
+       rel="noreferrer"
+       class="btn-ink"
+       style="margin:0;">
+      GitHub ↗
+    </a>
+
+  </div>
+</section>
+
+
+<footer>
+  © 2026 Ayushi — built with Python, data &amp; a little scrapbook tape.
+</footer>
+</div>
+</body>
+</html>
