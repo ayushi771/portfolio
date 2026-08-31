@@ -209,7 +209,9 @@
     border:1.5px solid var(--ink); background:var(--card); padding:9px 16px;
     font-family:"Space Mono"; font-size:12px; font-weight:700;
   }
-
+ .tilt-last {
+  transform: rotate(-1deg);
+ }
   input,textarea{font-family:"Space Grotesk"; font-size:14px;}
   textarea:focus,input:focus{outline:none; box-shadow:3px 3px 0 0 var(--hl-yellow);}
 
@@ -633,7 +635,7 @@
       </p>
     </div>
 
-    <div class="sticky b tilt-l">
+    <div class="sticky b tilt-last">
       <p style="font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:0;">
         currently
       </p>
