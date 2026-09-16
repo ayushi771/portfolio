@@ -591,6 +591,85 @@
 
   </div>
 </div>
+
+    <!-- ===== project 05 detail ===== -->
+    <div id="p5" style="margin-top:24px; scroll-margin-top:70px;">
+      <div class="split-panel">
+        <div class="split-dark">
+          <span class="mono" style="font-size:11px; letter-spacing:.1em; opacity:.7;">PROJECT 05</span>
+          <h3 class="display" style="font-size:clamp(24px,5vw,34px); text-transform:uppercase; margin:8px 0 4px;">Recipe Finder</h3>
+          <p class="hand" style="font-size:20px; opacity:.85; margin:0 0 14px;">Search recipes by what's actually in your fridge.</p>
+          <p style="font-size:14px; line-height:1.7; opacity:.9;">A modern recipe finder web app where you search by ingredients, filter by
+            cuisine, diet and meal type, save favorites, and manage your own account — built as a full-stack
+            React + FastAPI project with a real auth flow rather than a static demo.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:16px;">
+            <span class="chip m" style="color:var(--ink);">React</span><span class="chip y" style="color:var(--ink);">Vite</span>
+            <span class="chip p" style="color:var(--ink);">FastAPI</span><span class="chip b" style="color:var(--ink);">PostgreSQL</span>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:20px;">
+           <a class="btn-ink" style="margin:0;" href="https://github.com/ayushi771/Recipe-Finder-Website" target="_blank" rel="noreferrer">Github link ↗</a>
+          <a class="btn-ink" style="margin:0;" href="https://vite-project-2-guer.onrender.com/" target="_blank" rel="noreferrer">Live demo ↗</a>
+          </div>
+        </div>
+        <div class="split-light">
+          <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:0 0 8px;">what I built</p>
+          <ul style="margin:0; padding:0; list-style:none; font-size:13.5px; line-height:1.7;">
+            <li>▸ Ingredient-based recipe search with cuisine, diet and meal-type filters</li>
+            <li>▸ Full auth flow — login, register and forgot password</li>
+            <li>▸ Per-user saved favorites via an async SQLAlchemy + AsyncPG backend</li>
+            <li>▸ Framer Motion transitions and React Hot Toast feedback across a fully responsive UI</li>
+          </ul>
+          <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:20px 0 8px;">stack</p>
+          <div style="display:flex; flex-wrap:wrap; gap:6px;">
+            <span class="chip o">SQLAlchemy</span><span class="chip l">AsyncPG</span><span class="chip m">Framer Motion</span><span class="chip y">React Hot Toast</span>
+          </div>
+          <p class="hand" style="font-size:18px; margin-top:16px;"><span class="marker-underline">deployed:</span> frontend and backend both live on Render.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== project 06 detail ===== -->
+    <div id="p6" style="margin-top:24px; scroll-margin-top:70px;">
+      <div class="split-panel">
+        <div class="split-light">
+          <span class="mono" style="font-size:11px; letter-spacing:.1em; color:var(--ink-soft);">PROJECT 06</span>
+          <h3 class="display" style="font-size:clamp(24px,5vw,34px); text-transform:uppercase; margin:8px 0 4px;">Attendance Module</h3>
+          <p class="hand" style="font-size:20px; color:var(--ink-soft); margin:0 0 14px;">Shift-aware punch in / punch out, calculated automatically.</p>
+          <p style="font-size:14px; line-height:1.7;">A Django + DRF + PostgreSQL attendance system where employees punch in and
+            out, and First Half / Second Half / Total Worked are derived automatically from punch times and each
+            employee's assigned shift — including night shifts that cross midnight.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:16px;">
+            <span class="chip b">Django</span><span class="chip m">DRF</span><span class="chip y">PostgreSQL</span>
+          </div>
+          <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:22px 0 8px;">what I built</p>
+          <ul style="margin:0; padding:0; list-style:none; font-size:13.5px; line-height:1.7;">
+            <li>▸ Live-updating dashboard — punch card, activity feed, late/early/missing-punch-out alerts</li>
+            <li>▸ Immutable punch log with attendance always re-derived, never edited directly</li>
+            <li>▸ Row-level locking (select_for_update) so simultaneous punches can't create race conditions</li>
+            <li>▸ 25 automated tests covering exact threshold boundaries and dedicated concurrency scenarios</li>
+          </ul>
+        </div>
+        <div class="split-dark" style="padding:16px;">
+
+  <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; opacity:.7; margin:0 0 10px;">
+    project preview
+  </p>
+
+  <p style="font-size:14px; line-height:1.5; margin:0; opacity:.9;">
+    A shift-aware attendance system with a live-updating dashboard, an admin-visible late/early/missing-punch-out
+    trail, and dedicated concurrency tests proving race-condition protection under simultaneous load.
+  </p>
+
+  <div style="display:flex; gap:8px; margin-top:16px;">
+    <a class="btn-ink" style="margin:0;" href="https://github.com/ayushi771/attendance-module-assignment" target="_blank" rel="noreferrer">
+      GitHub ↗
+    </a>
+
+  </div>
+
+</div>
+      </div>
+    </div>
   </section>
 
  <!-- ===== TOOLS ===== -->
@@ -700,4 +779,4 @@
 </footer> 
 </div> 
 </body> 
-</html> see how big empty space it has
+</html>
