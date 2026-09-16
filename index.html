@@ -641,13 +641,7 @@
           <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:16px;">
             <span class="chip b">Django</span><span class="chip m">DRF</span><span class="chip y">PostgreSQL</span>
           </div>
-          <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:22px 0 8px;">what I built</p>
-          <ul style="margin:0; padding:0; list-style:none; font-size:13.5px; line-height:1.7;">
-            <li>▸ Live-updating dashboard — punch card, activity feed, late/early/missing-punch-out alerts</li>
-            <li>▸ Immutable punch log with attendance always re-derived, never edited directly</li>
-            <li>▸ Row-level locking (select_for_update) so simultaneous punches can't create race conditions</li>
-            <li>▸ 25 automated tests covering exact threshold boundaries and dedicated concurrency scenarios</li>
-          </ul>
+          
         </div>
         <div class="split-dark" style="padding:16px;">
 
@@ -659,7 +653,13 @@
     A shift-aware attendance system with a live-updating dashboard, an admin-visible late/early/missing-punch-out
     trail, and dedicated concurrency tests proving race-condition protection under simultaneous load.
   </p>
-
+ <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:22px 0 8px;">what I built</p>
+          <ul style="margin:0; padding:0; list-style:none; font-size:13.5px; line-height:1.7;">
+            <li>▸ Live-updating dashboard — punch card, activity feed, late/early/missing-punch-out alerts</li>
+            <li>▸ Immutable punch log with attendance always re-derived, never edited directly</li>
+            <li>▸ Row-level locking (select_for_update) so simultaneous punches can't create race conditions</li>
+            <li>▸ 25 automated tests covering exact threshold boundaries and dedicated concurrency scenarios</li>
+          </ul>
   <div style="display:flex; gap:8px; margin-top:16px;">
     <a class="btn-ink" style="margin:0;" href="https://github.com/ayushi771/attendance-module-assignment" target="_blank" rel="noreferrer">
       GitHub ↗
