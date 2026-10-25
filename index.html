@@ -244,16 +244,16 @@
 
   /* ===== projects ===== */
   .projects-head{display:flex; flex-direction:column; align-items:center; text-align:center;}
-  .proj-list{display:flex; flex-direction:column; gap:34px; margin-top:44px;}
+  .proj-list{display:flex; flex-direction:column; gap:22px; margin-top:32px; max-width:1040px; margin-left:auto; margin-right:auto;}
   .proj{
     display:grid; grid-template-columns:1fr; border:2px solid var(--ink); border-radius:var(--r); overflow:hidden;
-    box-shadow:8px 8px 0 var(--ink); background:var(--cream); scroll-margin-top:90px;
+    box-shadow:5px 5px 0 var(--ink); background:var(--cream); scroll-margin-top:90px;
     transition:transform .35s cubic-bezier(.3,1.6,.5,1), box-shadow .35s;
   }
-  .proj:hover{transform:translate(-3px,-4px) rotate(-.4deg); box-shadow:12px 12px 0 var(--ink);}
-  @media(min-width:900px){.proj{grid-template-columns:1.1fr 1fr; min-height:520px;}}
-  .pn{padding:28px; display:flex; flex-direction:column;}
-  @media(min-width:768px){.pn{padding:40px;}}
+  .proj:hover{transform:translate(-2px,-3px); box-shadow:8px 8px 0 var(--ink);}
+  @media(min-width:900px){.proj{grid-template-columns:1.1fr 1fr;}}
+  .pn{padding:20px; display:flex; flex-direction:column;}
+  @media(min-width:768px){.pn{padding:24px 28px;}}
   .tint{background:var(--c,var(--yellow));}
   .paper{background:var(--cream);}
   .pnum{
@@ -261,34 +261,34 @@
     background:var(--ink); color:var(--cream); padding:4px 12px; border-radius:999px;
   }
   .ptitle{
-    font-family:"Bagel Fat One"; text-transform:uppercase; font-size:clamp(26px,4.6vw,42px); line-height:1; margin:14px 0 6px;
+    font-family:"Bagel Fat One"; text-transform:uppercase; font-size:clamp(20px,3vw,28px); line-height:1.05; margin:10px 0 4px;
     -webkit-text-stroke:0;
   }
-  .ptag{font-family:"Caveat"; font-weight:700; font-size:23px; color:var(--ink-soft); margin:0 0 14px; line-height:1.15;}
+  .ptag{font-family:"Caveat"; font-weight:700; font-size:20px; color:var(--ink-soft); margin:0 0 8px; line-height:1.1;}
   .tint .ptag{color:rgba(32,29,27,.72);}
-  .pdesc{font-size:15px; line-height:1.7; margin:0;}
-  .pchips{display:flex; flex-wrap:wrap; gap:7px; margin-top:18px;}
-  .pchips .chip{font-size:12px; padding:4px 12px;}
-  .plinks{display:flex; flex-wrap:wrap; gap:10px; margin-top:auto; padding-top:22px;}
-  .plinks .btn{padding:10px 18px; font-size:11px; box-shadow:3px 3px 0 var(--ink);}
-  .blist{margin:0; padding:0; list-style:none; font-size:14.5px; line-height:1.65;}
-  .blist li{padding:5px 0 5px 22px; position:relative;}
-  .blist li::before{content:"✦"; position:absolute; left:0; top:5px; color:var(--gold); -webkit-text-stroke:.6px var(--ink);}
-  .sub{margin:24px 0 10px;}
+  .pdesc{font-size:13.5px; line-height:1.55; margin:0;}
+  .pchips{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px;}
+  .pchips .chip{font-size:11px; padding:3px 10px;}
+  .plinks{display:flex; flex-wrap:wrap; gap:10px; margin-top:auto; padding-top:14px;}
+  .plinks .btn{padding:8px 14px; font-size:10.5px; box-shadow:2px 2px 0 var(--ink);}
+  .blist{margin:0; padding:0; list-style:none; font-size:13px; line-height:1.45;}
+  .blist li{padding:3px 0 3px 18px; position:relative;}
+  .blist li::before{content:"✦"; position:absolute; left:0; top:3px; color:var(--gold); -webkit-text-stroke:.6px var(--ink);}
+  .sub{margin:14px 0 6px;}
   .sub:first-child{margin-top:0;}
   .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(96px,1fr)); gap:10px;}
-  .stat{border:2px solid var(--ink); background:var(--cream); border-radius:18px; padding:14px 8px; text-align:center; transition:transform .25s cubic-bezier(.3,1.8,.5,1);}
+  .stat{border:2px solid var(--ink); background:var(--cream); border-radius:14px; padding:8px 6px; text-align:center; transition:transform .25s cubic-bezier(.3,1.8,.5,1);}
   .stat:hover{transform:rotate(-3deg) scale(1.06);}
   .stat:nth-child(2n){background:var(--pink);} .stat:nth-child(3n){background:var(--yellow);}
-  .stat .val{font-family:"Bagel Fat One"; font-size:clamp(22px,4vw,32px); line-height:1.1;}
+  .stat .val{font-family:"Bagel Fat One"; font-size:clamp(18px,3vw,24px); line-height:1.1;}
   .stat .lb{font-family:"Space Mono"; font-size:9.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft);}
-  .learned{font-family:"Caveat"; font-weight:700; font-size:22px; margin:18px 0 0; line-height:1.2;}
-  .shot{background:var(--cream); border:2px solid var(--ink); border-radius:16px; padding:6px; overflow:hidden; max-width:300px; cursor:zoom-in; box-shadow:4px 4px 0 var(--ink);}
+  .learned{font-family:"Caveat"; font-weight:700; font-size:19px; margin:10px 0 0; line-height:1.15;}
+  .shot{background:var(--cream); border:2px solid var(--ink); border-radius:16px; padding:6px; overflow:hidden; max-width:260px; cursor:zoom-in; box-shadow:4px 4px 0 var(--ink);}
   .shot img{width:100%; display:block; border-radius:10px; transition:transform .6s ease;}
   .shot:hover img{transform:scale(1.04);}
-  .shot img{height:170px; object-fit:contain; background:#f5f5f7;}
-  .shot img.fixed{height:170px;}
-  .cap{font-size:14px; line-height:1.55; margin:14px 0 0;}
+  .shot img{height:150px; object-fit:contain; background:#f5f5f7;}
+  .shot img.fixed{height:150px;}
+  .cap{font-size:12.5px; line-height:1.45; margin:10px 0 0;}
 
   /* ===== tools ===== */
   .tools-wrap{text-align:center; padding:56px 0 0;}
@@ -508,7 +508,7 @@
   </section>
 
   <!-- ===== FEATURED WORK ===== -->
-  <section id="work" class="pad" style="background:var(--paper); border-top:2px solid var(--ink);">
+  <section id="work" class="pad" style="background:var(--paper); border-top:2px solid var(--ink); padding-top:56px; padding-bottom:56px;">
     <div class="projects-head">
       <p class="tag rv">the good stuff</p>
       <h2 class="h-serif rv">Projects</h2>
@@ -726,13 +726,6 @@
           <div class="pchips">
             <span class="chip g">Python</span><span class="chip y">PostgreSQL</span><span class="chip b">Power BI / DAX</span><span class="chip l">TypeScript</span>
           </div>
-          <p class="lab sub">what I built</p>
-          <ul class="blist">
-            <li>Star-schema PostgreSQL pipeline with fuzzy product matching (rapidfuzz, confidence-scored)</li>
-            <li>Investigated and documented a site's anti-bot protections; pivoted to a traceable manual-collection workflow</li>
-            <li>Power BI dashboard with DAX measures for listing coverage, price intelligence and platform performance</li>
-            <li>Custom Power BI visual (TypeScript) for prioritized stock/delivery/discount alerts</li>
-          </ul>
           <div class="plinks">
             <a class="btn" href="https://github.com/ayushi771/Amul-quick-commerce-analytics" target="_blank" rel="noreferrer">Github link ↗</a>
           </div>
@@ -744,6 +737,13 @@
           </div>
           <p class="cap">A Power BI dashboard tracking listing coverage, price intelligence and platform performance across
             four quick-commerce platforms, plus a custom alert visual for stock and delivery issues.</p>
+          <p class="lab sub">what I built</p>
+          <ul class="blist">
+            <li>Star-schema PostgreSQL pipeline with fuzzy product matching (rapidfuzz, confidence-scored)</li>
+            <li>Investigated and documented a site's anti-bot protections; pivoted to a traceable manual-collection workflow</li>
+            <li>Power BI dashboard with DAX measures for listing coverage, price intelligence and platform performance</li>
+            <li>Custom Power BI visual (TypeScript) for prioritized stock/delivery/discount alerts</li>
+          </ul>
         </div>
       </article>
 
