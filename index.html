@@ -32,7 +32,7 @@
     margin:0;
     font-family:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
     color:var(--ink);
-    background:linear-gradient(180deg,#b7e0e8 0%,#d5eef0 45%,#eaf6f2 100%) fixed;
+    background:var(--paper);
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
     cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'><path d='M4 2 L4 22 L9.5 17 L13.5 26 L17 24.5 L13 16 L21 16 Z' fill='white' stroke='%23201d1b' stroke-width='2' stroke-linejoin='round'/></svg>") 4 2, auto;
@@ -97,7 +97,6 @@
   #home{
     text-align:center; overflow:hidden;
     background:var(--cream);
-    box-shadow:inset 0 0 0 12px var(--sky);
     padding-top:60px; padding-bottom:0;
     border-bottom:2px solid var(--ink);
   }
@@ -362,7 +361,7 @@
     .ground{display:none;}
   }
   @media(max-width:700px){
-    #home{padding-top:54px; box-shadow:inset 0 0 0 8px var(--sky);}
+    #home{padding-top:54px;}
     .name{font-size:clamp(60px,22vw,110px);}
     .ground .sk{padding:10px 14px 8px; font-size:13px;}
     .ground .sk:nth-child(2),.ground .sk:nth-child(4){padding-top:14px;}
