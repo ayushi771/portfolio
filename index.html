@@ -7,826 +7,906 @@
 <meta name="description" content="Portfolio of Ayushi — B.Tech graduate working in data analytics, data engineering and Python. SQL, PySpark, Kafka, Power BI, FastAPI and applied NLP." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@400..700&family=Space+Grotesk:wght@400..700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Caveat:wght@500..700&family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --paper:#f6f3ec;
-    --paper-2:#efe9dc;
-    --card:#fffdf8;
-    --ink:#171310;
-    --ink-soft:#5a5346;
-    --hl-yellow:#ffd54a;
-    --hl-pink:#ff9ac1;
-    --hl-mint:#8fe3c0;
-    --hl-blue:#8fcbff;
-    --hl-lilac:#c9b6ff;
-    --hl-orange:#ffb067;
-    --radius:0px;
+    --sky:#bfe4ea;
+    --sky-2:#e3f2ee;
+    --cream:#fffdf6;
+    --paper:#f7f3e6;
+    --ink:#201d1b;
+    --ink-soft:#5f594e;
+    --yellow:#fdeea0;
+    --pink:#ffc6d8;
+    --blue:#bfe3f2;
+    --green:#d3e8b4;
+    --lilac:#dccdfc;
+    --orange:#ffd2a1;
+    --mint:#a9e6cc;
+    --gold:#e8b934;
+    --r:28px;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     margin:0;
-    background:var(--paper);
+    font-family:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
     color:var(--ink);
-    font-family:"Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    background:linear-gradient(180deg,#b7e0e8 0%,#d5eef0 45%,#eaf6f2 100%) fixed;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
+    cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'><path d='M4 2 L4 22 L9.5 17 L13.5 26 L17 24.5 L13 16 L21 16 Z' fill='white' stroke='%23201d1b' stroke-width='2' stroke-linejoin='round'/></svg>") 4 2, auto;
   }
-  .hand{font-family:"Caveat","Space Grotesk",cursive; font-weight:700;}
-  .display{font-family:"Archivo Black", ui-sans-serif, sans-serif; letter-spacing:-0.01em;}
-  .mono{font-family:"Space Mono", monospace;}
+  a,button{cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><path d='M11 3h4v11h2v-3h4v3h2v-2h4v10l-3 6H13l-6-9 2-2 2 2V5z' fill='white' stroke='%23201d1b' stroke-width='2' stroke-linejoin='round'/></svg>") 10 2, pointer;}
+  .bubble{font-family:"Bagel Fat One","Bricolage Grotesque",sans-serif; font-weight:400;}
+  .serif{font-family:"DM Serif Display",serif; font-weight:400;}
+  .hand{font-family:"Caveat",cursive; font-weight:700;}
+  .mono{font-family:"Space Mono",monospace;}
 
-  /* ---- browser frame shell (matches reference chrome-bar look) ---- */
-  .frame{
-    max-width:none;
-    margin:0;
-    background:var(--paper);
-    border:none;
-    box-shadow:none;
-    background-image:
-      radial-gradient(var(--ink-soft) 0.6px, transparent 0.6px);
-    background-size:22px 22px;
-    background-color:var(--paper);
-    background-blend-mode:overlay;
-    opacity:1;
-    overflow:hidden;
+  /* ===== floating nav pill ===== */
+  .nav{
+    position:fixed; top:14px; left:50%; transform:translateX(-50%);
+    z-index:100; width:min(1180px,calc(100% - 24px));
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:8px 10px 8px 18px;
+    background:rgba(255,253,246,.82); backdrop-filter:blur(12px);
+    border:2px solid var(--ink); border-radius:999px;
+    box-shadow:0 4px 0 var(--ink);
   }
-  .chrome-bar{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    padding:10px 16px;
-    background:var(--card);
+  .logo{display:flex; gap:6px; align-items:center; text-decoration:none; color:var(--ink);}
+  .logo .dot{width:11px;height:11px;border-radius:50%;border:2px solid var(--ink);}
+  .logo .dot:nth-child(1){background:#ff7a66;} .logo .dot:nth-child(2){background:var(--yellow);} .logo .dot:nth-child(3){background:#8ddc97;}
+  .nav-links{display:flex; gap:2px; flex-wrap:wrap; justify-content:center;}
+  .nav-links a{
+    font-family:"Space Mono",monospace; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--ink-soft); text-decoration:none; padding:7px 11px; border-radius:999px; transition:.2s;
+  }
+  .nav-links a:hover,.nav-links a.on{background:var(--ink); color:var(--cream);}
+  .nav-right{display:flex; gap:8px; align-items:center;}
+  .pill-dot{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--ink);}
+  .btn-pill{
+    font-family:"Space Mono",monospace; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    background:var(--cream); color:var(--ink); padding:9px 16px; border:2px solid var(--ink); border-radius:999px;
+    text-decoration:none; transition:.2s; white-space:nowrap;
+  }
+  .btn-pill:hover{background:var(--pink); transform:rotate(-3deg) scale(1.05);}
+  @media(max-width:760px){
+    .nav{border-radius:26px; padding:10px 12px; flex-wrap:wrap; justify-content:center;}
+    .nav-right{display:none;}
+    .nav-links a{padding:6px 8px; font-size:10px;}
+  }
+
+  /* ===== sheet (the "website in a frame" look) ===== */
+  .sheet{
+    width:min(1240px,calc(100% - 24px)); margin:84px auto 40px;
+    border:2px solid var(--ink); border-radius:34px; overflow:hidden;
+    background:var(--cream); box-shadow:0 10px 0 rgba(32,29,27,.14);
+  }
+  section{position:relative;}
+  .pad{padding:56px 22px;}
+  @media(min-width:700px){.pad{padding:80px 48px;}}
+  @media(min-width:1100px){.pad{padding:96px 72px;}}
+
+  .grid-paper{
+    background-color:var(--cream);
+    background-image:linear-gradient(rgba(32,29,27,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(32,29,27,.06) 1px,transparent 1px);
+    background-size:34px 34px;
+  }
+
+  /* ===== hero ===== */
+  #home{
+    text-align:center; overflow:hidden;
+    background:radial-gradient(120% 90% at 50% 0%, #e9f4ee 0%, #cfe9ec 60%, #bfe4ea 100%);
+    padding-top:70px; padding-bottom:0;
     border-bottom:2px solid var(--ink);
-    position:sticky;
-    top:0;
-    z-index:50;
-    flex-wrap:wrap;
   }
-  .dots{display:flex; gap:6px; flex:0 0 auto;}
-  .dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--ink);}
-  .dot.red{background:#ff6b57;}
-  .dot.yellow{background:#ffd54a;}
-  .dot.green{background:#7fd88a;}
-  .chrome-nav{
-    display:flex; gap:4px; flex:1 1 auto; justify-content:center;
-    flex-wrap:wrap;
+  .eyebrow-tag{
+    display:inline-block; font-family:"Caveat"; font-weight:700; font-size:clamp(22px,4vw,30px);
+    background:var(--pink); border:2px solid var(--ink); padding:2px 18px; border-radius:6px; transform:rotate(-3deg);
+    box-shadow:3px 3px 0 var(--ink);
   }
-  .chrome-nav a{
-    font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
-    padding:6px 10px; border:1.5px solid transparent; color:var(--ink-soft);
-    text-decoration:none; transition:.15s; white-space:nowrap;
+  .name{
+    margin:18px 0 0; line-height:.9; display:flex; justify-content:center; flex-wrap:wrap; gap:0;
+    font-size:clamp(86px,21vw,260px); user-select:none;
   }
-  .chrome-nav a:hover{border-color:var(--ink); color:var(--ink); background:var(--paper-2);}
-  .chrome-right{display:flex; align-items:center; gap:10px; flex:0 0 auto;}
-  .status-dot{width:8px;height:8px;border-radius:50%;}
-  .btn-contact{
-    font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
-    background:var(--ink); color:var(--paper); padding:7px 14px; border:1.5px solid var(--ink);
-    text-decoration:none;
+  .name .L{
+    display:inline-block; font-family:"Bagel Fat One",sans-serif; font-weight:400;
+    -webkit-text-stroke:.09em var(--ink); paint-order:stroke fill;
+    color:var(--cream); transition:transform .25s cubic-bezier(.3,1.8,.5,1);
+    animation:drop .9s cubic-bezier(.3,1.6,.5,1) both, wob 3.8s ease-in-out infinite;
+    animation-delay:calc(var(--i)*.09s), calc(.9s + var(--i)*.2s);
+    text-shadow:0 .05em 0 rgba(32,29,27,.18);
   }
+  .name .L.d{color:var(--ink); -webkit-text-stroke:.11em var(--mint);}
+  .name .L.p{color:var(--ink); -webkit-text-stroke:.11em var(--pink);}
+  .name .L.y{color:var(--cream); -webkit-text-stroke:.1em var(--ink);}
+  .name .L.bl{color:var(--ink); -webkit-text-stroke:.11em var(--blue);}
+  .name .L.yl{color:var(--ink); -webkit-text-stroke:.11em var(--yellow);}
+  .name .L:hover{transform:translateY(-.12em) rotate(-8deg) scale(1.12);}
+  .name .period{color:var(--ink); -webkit-text-stroke:0;}
+  @keyframes drop{from{transform:translateY(-120%) rotate(-25deg); opacity:0}to{transform:none; opacity:1}}
+  @keyframes wob{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2.5deg) translateY(-.03em)}}
 
-  section{padding:44px 20px;}
-  @media(min-width:600px){section{padding:56px 32px;}}
-  @media(min-width:768px){section{padding:72px 48px;}}
-  @media(min-width:1100px){section{padding:88px 56px;}}
-
-  .eyebrow{font-family:"Caveat"; font-weight:700; font-size:clamp(18px,4vw,22px); color:var(--ink-soft); margin:0;}
-  .h-section{font-family:"Archivo Black"; text-transform:uppercase; font-size:clamp(32px,9vw,60px); line-height:.95; margin:4px 0 0;}
-
-  /* chips / pills */
+  .hero-chips{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:22px;}
   .chip{
-    display:inline-flex; align-items:center; gap:6px;
-    border:1.5px solid var(--ink); padding:5px 12px;
-    font-size:12px; font-weight:700; letter-spacing:.02em;
-    background:var(--card);
+    display:inline-flex; align-items:center; gap:6px; border:2px solid var(--ink); padding:5px 13px;
+    font-size:12.5px; font-weight:700; background:var(--cream); border-radius:999px;
+    transition:transform .2s cubic-bezier(.3,1.8,.5,1);
   }
-  .chip.y{background:var(--hl-yellow);} .chip.p{background:var(--hl-pink);}
-  .chip.m{background:var(--hl-mint);} .chip.b{background:var(--hl-blue);}
-  .chip.l{background:var(--hl-lilac);} .chip.o{background:var(--hl-orange);}
+  .chip:hover{transform:translateY(-3px) rotate(-3deg);}
+  .chip.y{background:var(--yellow);} .chip.p{background:var(--pink);} .chip.m{background:var(--mint);}
+  .chip.b{background:var(--blue);} .chip.l{background:var(--lilac);} .chip.o{background:var(--orange);}
+  .chip.g{background:var(--green);}
 
-  /* sticky note */
-  .sticky{border:1.5px solid var(--ink); padding:20px; box-shadow:4px 4px 0 0 var(--ink);}
-  .sticky.y{background:var(--hl-yellow);} .sticky.p{background:var(--hl-pink);}
-  .sticky.m{background:var(--hl-mint);} .sticky.b{background:var(--hl-blue);}
-  .tilt-l{transform:rotate(-1.6deg);} .tilt-r{transform:rotate(1.6deg);}
+  .lead{max-width:640px; margin:24px auto 0; font-size:clamp(17px,3.2vw,23px); font-weight:600; line-height:1.4; text-wrap:balance;}
+  .mark{background-image:linear-gradient(transparent 58%, var(--yellow) 58%); background-size:0% 100%; background-repeat:no-repeat; transition:background-size 1s .6s ease; padding:0 2px;}
+  .in .mark,.mark.in{background-size:100% 100%;}
 
-  /* paper card */
-  .paper-card{border:1.5px solid var(--ink); background:var(--card); position:relative;}
-  .paper-soft{border:1.5px solid var(--ink); background:var(--card);}
-
-  /* tape */
-  .tape{
-    position:absolute; width:64px; height:22px; top:-11px;
-    background:rgba(255,213,74,.55); border:1px solid rgba(23,19,16,.25);
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; border:2px solid var(--ink); border-radius:999px;
+    background:var(--ink); color:var(--cream); padding:13px 24px;
+    font-family:"Space Mono",monospace; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    text-decoration:none; box-shadow:4px 4px 0 var(--ink); transition:transform .18s cubic-bezier(.3,1.8,.5,1), box-shadow .18s, background .2s;
+    position:relative;
   }
+  .btn:hover{transform:translate(-2px,-3px) rotate(-1.5deg); box-shadow:7px 7px 0 var(--ink); background:#3a3532;}
+  .btn:active{transform:translate(2px,2px); box-shadow:1px 1px 0 var(--ink);}
+  .btn.out{background:var(--cream); color:var(--ink);}
+  .btn.out:hover{background:var(--yellow);}
+  .btn.pk{background:var(--pink); color:var(--ink);}
+  .btn.pk:hover{background:var(--yellow);}
+  .btn-row{display:flex; gap:12px; justify-content:center; margin-top:28px; flex-wrap:wrap;}
 
-  /* polaroid */
-  .polaroid{border:1.5px solid var(--ink); background:var(--card); padding:10px 10px 30px; box-shadow:5px 5px 0 0 var(--ink);}
-  .polaroid figcaption{font-family:"Caveat"; font-weight:700; font-size:20px; text-align:center; margin-top:8px;}
-
-  .avatar-mono{
-    aspect-ratio:4/5; width:100%; display:flex; align-items:center; justify-content:center;
-    background:linear-gradient(155deg, var(--hl-pink), var(--hl-yellow));
-    border:1.5px solid var(--ink);
-  }
-  .avatar-mono span{font-family:"Archivo Black"; font-size:96px; color:var(--ink); opacity:.92;}
-
-  .marker-underline{background-image:linear-gradient(transparent 60%, var(--hl-yellow) 60%); }
-
+  /* hero floating stickers */
+  .float{position:absolute; pointer-events:none; will-change:transform; z-index:1;}
+  .float svg{display:block; animation:bob 5s ease-in-out infinite; animation-delay:var(--d,0s);}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-12px) rotate(8deg)}}
   .stamp{
-    width:70px;height:70px;border-radius:50%; border:1.5px solid var(--ink);
-    display:flex;align-items:center;justify-content:center;text-align:center;
-    font-family:"Archivo Black"; font-size:10px; letter-spacing:.03em; line-height:1.15; text-transform:uppercase;
+    width:84px;height:84px;border-radius:50%; border:2px solid var(--ink); display:flex; align-items:center; justify-content:center;
+    text-align:center; font-family:"Bagel Fat One"; font-size:13px; line-height:1.1; text-transform:uppercase;
+    box-shadow:3px 3px 0 var(--ink); animation:spin 14s linear infinite;
   }
-
-  /* browser-chrome mockup used inside project cards */
-  .mock{border:1.5px solid var(--ink); background:var(--card); overflow:hidden;}
-  .mock-bar{display:flex; gap:5px; padding:7px 9px; border-bottom:1.5px solid var(--ink); background:var(--paper-2);}
-  .mock-dot{width:7px;height:7px;border-radius:50%; border:1px solid var(--ink);}
-  .mock-body{padding:14px; min-height:150px;}
-
-  .btn-ink{
-    display:inline-flex; align-items:center; gap:8px; border:1.5px solid var(--ink);
-    background:var(--ink); color:var(--paper); padding:11px 20px;
-    font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase;
-    text-decoration:none; box-shadow:3px 3px 0 0 var(--hl-yellow); transition:transform .12s;
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .stamp.s1{background:var(--yellow);} .stamp.s2{background:var(--mint);}
+  .bubble-tag{
+    background:var(--cream); border:2px solid var(--ink); border-radius:999px; padding:6px 14px;
+    font-family:"Space Mono"; font-weight:700; font-size:12px; letter-spacing:.1em; text-transform:uppercase; box-shadow:3px 3px 0 var(--ink);
   }
-  .btn-ink:hover{transform:translateY(-2px);}
-  .btn-outline{
-    display:inline-flex; align-items:center; gap:8px; border:1.5px solid var(--ink);
-    background:transparent; color:var(--ink); padding:11px 20px;
-    font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase;
-    text-decoration:none; box-shadow:3px 3px 0 0 var(--ink); transition:transform .12s;
+  @media(max-width:700px){ .hide-s{display:none;} .stamp{width:62px;height:62px;font-size:10px;} }
+
+  /* hero "ground" strip of sticker pills */
+  .ground{
+    display:flex; justify-content:center; align-items:flex-end; gap:14px; flex-wrap:wrap;
+    margin-top:44px; padding:0 14px 0;
   }
-  .btn-outline:hover{transform:translateY(-2px);}
-   .email-hover {
-  position: relative;
-  padding: 12px 18px;
-  border: 1.5px solid var(--ink);
-  background: var(--card);
-  font-size: 13px;
-  font-weight: 700;
-  cursor: default;
-  overflow: hidden;
-  transition: .25s ease;
-}
+  .ground .sk{
+    border:2px solid var(--ink); border-bottom:0; border-radius:26px 26px 0 0; padding:16px 20px 14px;
+    font-family:"Bagel Fat One"; font-size:clamp(14px,2.4vw,22px); transition:transform .3s cubic-bezier(.3,1.8,.5,1);
+    transform:translateY(14px);
+  }
+  .ground .sk:hover{transform:translateY(0) rotate(-2deg);}
+  .ground .sk:nth-child(1){background:var(--pink);} .ground .sk:nth-child(2){background:var(--yellow); padding-top:26px;}
+  .ground .sk:nth-child(3){background:var(--blue);} .ground .sk:nth-child(4){background:var(--green); padding-top:22px;}
 
-.email-hover .email-address {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--ink);
-  color: var(--paper);
-  opacity: 0;
-  transform: translateY(100%);
-  transition: .25s ease;
-  font-size: 12px;
-}
+  /* ===== ticker ===== */
+  .ticker{
+    background:var(--paper); border-top:2px solid var(--ink); border-bottom:2px solid var(--ink);
+    overflow:hidden; white-space:nowrap; padding:11px 0; position:relative;
+  }
+  .ticker.dark{background:var(--ink); color:var(--cream);}
+  .tick-track{display:inline-flex; gap:22px; animation:marq 28s linear infinite; padding-left:22px;}
+  .ticker.rev .tick-track{animation-direction:reverse; animation-duration:34s;}
+  .ticker:hover .tick-track{animation-play-state:paused;}
+  .tick-track span{font-family:"Space Mono"; font-weight:700; font-size:12px; letter-spacing:.14em; text-transform:uppercase; display:inline-flex; align-items:center; gap:22px;}
+  .tick-track i{display:inline-block; width:18px; height:18px;}
+  @keyframes marq{to{transform:translateX(-50%);}}
 
-.email-hover:hover .email-address {
-  opacity: 1;
-  transform: translateY(0);
-}
-  .split-panel{display:grid; grid-template-columns:1fr; border:1.5px solid var(--ink);}
-  @media(min-width:900px){.split-panel{grid-template-columns:1.1fr 1fr;}}
-  .split-dark{background:var(--ink); color:var(--paper); padding:24px;}
-  .split-light{background:var(--card); padding:24px;}
-  @media(min-width:768px){.split-dark,.split-light{padding:34px;}}
+  /* ===== section headings ===== */
+  .tag{display:inline-block; font-family:"Caveat"; font-weight:700; font-size:clamp(20px,3.5vw,26px); color:var(--ink-soft); margin:0;}
+  .h-serif{
+    font-family:"DM Serif Display",serif; font-weight:400; font-size:clamp(54px,11vw,128px); line-height:.92;
+    margin:4px 0 0; letter-spacing:-.02em; text-shadow:3px 3px 0 var(--pink);
+  }
+  .h-serif em{font-style:italic;}
+  .center{text-align:center;}
 
-  .stat-box{border:1.5px solid var(--ink); background:var(--card); padding:14px; text-align:center;}
-  .stat-box .val{font-family:"Archivo Black"; font-size:clamp(18px,4vw,26px);}
-  .stat-box .lab{font-size:10px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft);}
+  /* ===== reveal ===== */
+  .rv{opacity:0; transform:translateY(34px) scale(.98); transition:opacity .7s ease, transform .8s cubic-bezier(.2,1.3,.4,1);}
+  .rv.in{opacity:1; transform:none;}
+  .rv.d1{transition-delay:.1s;} .rv.d2{transition-delay:.2s;} .rv.d3{transition-delay:.3s;}
 
+  /* ===== about ===== */
+  .about-wrap{display:grid; grid-template-columns:1fr; gap:22px; margin-top:34px;}
+  @media(min-width:960px){.about-wrap{grid-template-columns:1.1fr .9fr; align-items:start;}}
+  .note{
+    border:2px solid var(--ink); border-radius:var(--r); background:var(--cream); padding:26px; font-size:16px; line-height:1.7;
+    box-shadow:6px 6px 0 var(--ink); position:relative;
+  }
+  .note p{margin:0 0 14px;} .note p:last-child{margin:0;}
+  .tape{position:absolute; width:78px; height:26px; background:rgba(253,238,160,.8); border:1.5px solid rgba(32,29,27,.25); top:-13px;}
+  .list-card{
+    border:2px solid var(--ink); border-radius:var(--r); background:var(--blue); padding:26px; position:relative;
+    box-shadow:6px 6px 0 var(--ink);
+  }
+  .lab{font-family:"Space Mono"; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin:0;}
+  .list-card ul{margin:14px 0 0; padding:0; list-style:none; font-size:15px; line-height:1.9; font-weight:600;}
+  .list-card li{transition:transform .2s;} .list-card li:hover{transform:translateX(8px);}
+  .repl{
+    margin-top:18px; background:var(--ink); color:var(--cream); padding:16px; font-size:12.5px; line-height:1.6; min-height:112px;
+    border-radius:16px; border:2px solid var(--ink); white-space:pre-wrap; word-break:break-word; overflow-x:auto;
+  }
+  .repl .cur{display:inline-block; width:8px; height:14px; background:var(--mint); vertical-align:-2px; animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0}}
+  .work-with{margin-top:26px;}
+  .work-with .hand{font-size:24px; color:var(--ink-soft); margin:0 0 12px;}
+  .chips{display:flex; flex-wrap:wrap; gap:9px;}
+
+  /* ===== projects ===== */
+  .projects-head{display:flex; flex-direction:column; align-items:center; text-align:center;}
+  .proj-list{display:flex; flex-direction:column; gap:34px; margin-top:44px;}
+  .proj{
+    display:grid; grid-template-columns:1fr; border:2px solid var(--ink); border-radius:var(--r); overflow:hidden;
+    box-shadow:8px 8px 0 var(--ink); background:var(--cream); scroll-margin-top:90px;
+    transition:transform .35s cubic-bezier(.3,1.6,.5,1), box-shadow .35s;
+  }
+  .proj:hover{transform:translate(-3px,-4px) rotate(-.4deg); box-shadow:12px 12px 0 var(--ink);}
+  @media(min-width:900px){.proj{grid-template-columns:1.1fr 1fr;}}
+  .pn{padding:28px;}
+  @media(min-width:768px){.pn{padding:40px;}}
+  .tint{background:var(--c,var(--yellow));}
+  .paper{background:var(--cream);}
+  .pnum{
+    display:inline-block; font-family:"Space Mono"; font-size:11px; font-weight:700; letter-spacing:.12em;
+    background:var(--ink); color:var(--cream); padding:4px 12px; border-radius:999px;
+  }
+  .ptitle{
+    font-family:"Bagel Fat One"; text-transform:uppercase; font-size:clamp(26px,4.6vw,42px); line-height:1; margin:14px 0 6px;
+    -webkit-text-stroke:0;
+  }
+  .ptag{font-family:"Caveat"; font-weight:700; font-size:23px; color:var(--ink-soft); margin:0 0 14px; line-height:1.15;}
+  .tint .ptag{color:rgba(32,29,27,.72);}
+  .pdesc{font-size:15px; line-height:1.7; margin:0;}
+  .pchips{display:flex; flex-wrap:wrap; gap:7px; margin-top:18px;}
+  .pchips .chip{font-size:12px; padding:4px 12px;}
+  .plinks{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px;}
+  .plinks .btn{padding:10px 18px; font-size:11px; box-shadow:3px 3px 0 var(--ink);}
+  .blist{margin:0; padding:0; list-style:none; font-size:14.5px; line-height:1.65;}
+  .blist li{padding:5px 0 5px 22px; position:relative;}
+  .blist li::before{content:"✦"; position:absolute; left:0; top:5px; color:var(--gold); -webkit-text-stroke:.6px var(--ink);}
+  .sub{margin:24px 0 10px;}
+  .sub:first-child{margin-top:0;}
+  .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(96px,1fr)); gap:10px;}
+  .stat{border:2px solid var(--ink); background:var(--cream); border-radius:18px; padding:14px 8px; text-align:center; transition:transform .25s cubic-bezier(.3,1.8,.5,1);}
+  .stat:hover{transform:rotate(-3deg) scale(1.06);}
+  .stat:nth-child(2n){background:var(--pink);} .stat:nth-child(3n){background:var(--yellow);}
+  .stat .val{font-family:"Bagel Fat One"; font-size:clamp(22px,4vw,32px); line-height:1.1;}
+  .stat .lb{font-family:"Space Mono"; font-size:9.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft);}
+  .learned{font-family:"Caveat"; font-weight:700; font-size:22px; margin:18px 0 0; line-height:1.2;}
+  .shot{background:var(--cream); border:2px solid var(--ink); border-radius:16px; padding:6px; overflow:hidden;}
+  .shot img{width:100%; display:block; border-radius:10px; transition:transform .6s ease;}
+  .shot:hover img{transform:scale(1.04);}
+  .shot img.fixed{height:360px; object-fit:contain; background:#f5f5f7;}
+  .cap{font-size:14px; line-height:1.55; margin:14px 0 0;}
+
+  /* ===== tools ===== */
+  .tools-wrap{text-align:center; padding:56px 0 0;}
+  .tools-wrap .hand{font-size:26px; color:var(--ink-soft); margin:0;}
+  .tool-badges{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:18px auto 0; max-width:900px; padding:0 20px;}
   .tool-badge{
-    border:1.5px solid var(--ink); background:var(--card); padding:9px 16px;
-    font-family:"Space Mono"; font-size:12px; font-weight:700;
+    border:2px solid var(--ink); background:var(--cream); padding:10px 18px; border-radius:999px;
+    font-family:"Space Mono"; font-size:13px; font-weight:700; box-shadow:3px 3px 0 var(--ink);
+    transition:transform .25s cubic-bezier(.3,1.8,.5,1), background .2s;
   }
- .tilt-last {
-  transform: rotate(0deg) translateX(6px);
-}
-  input,textarea{font-family:"Space Grotesk"; font-size:14px;}
-  textarea:focus,input:focus{outline:none; box-shadow:3px 3px 0 0 var(--hl-yellow);}
+  .tool-badge:nth-child(6n+1):hover{background:var(--yellow);} .tool-badge:nth-child(6n+2):hover{background:var(--pink);}
+  .tool-badge:nth-child(6n+3):hover{background:var(--mint);} .tool-badge:nth-child(6n+4):hover{background:var(--blue);}
+  .tool-badge:nth-child(6n+5):hover{background:var(--lilac);} .tool-badge:nth-child(6n):hover{background:var(--orange);}
+  .tool-badge:hover{transform:translateY(-6px) rotate(-4deg);}
 
-  footer{border-top:2px solid var(--ink); padding:18px 20px; text-align:center; font-size:12px; color:var(--ink-soft);}
+  /* ===== playground ===== */
+  .play{display:grid; grid-template-columns:1fr; gap:22px; margin-top:34px;}
+  @media(min-width:800px){.play{grid-template-columns:repeat(3,1fr);}}
+  .sticky{
+    border:2px solid var(--ink); border-radius:var(--r); padding:26px 24px 30px; box-shadow:6px 6px 0 var(--ink); min-height:170px;
+    transition:transform .35s cubic-bezier(.3,1.8,.5,1);
+  }
+  .sticky.y{background:var(--yellow); transform:rotate(-2deg);}
+  .sticky.m{background:var(--mint); transform:rotate(1.8deg);}
+  .sticky.b{background:var(--blue); transform:rotate(-.8deg) translateX(6px);}
+  .sticky:hover{transform:rotate(0) scale(1.05) translateY(-6px);}
+  .sticky .lab{opacity:.8;}
+  .sticky p.hand{font-size:27px; line-height:1.15; margin:12px 0 0;}
+  .rv.sticky.in.y{transform:rotate(-2deg);} .rv.sticky.in.m{transform:rotate(1.8deg);} .rv.sticky.in.b{transform:rotate(-.8deg) translateX(6px);}
+  .rv.sticky.in:hover{transform:rotate(0) scale(1.05) translateY(-6px);}
 
-  img{max-width:100%; height:auto;}
+  /* ===== contact / dark footer ===== */
+  #contact{background:var(--ink); color:var(--cream); text-align:center; overflow:hidden; border-top:2px solid var(--ink);}
+  #contact .tag{color:var(--mint);}
+  #contact .h-serif{text-shadow:3px 3px 0 var(--pink); color:var(--cream);}
+  .lets{max-width:480px; margin:14px auto 0; font-size:16px; color:#d9d3c3;}
+  .contact-btns{display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin-top:28px;}
+  #contact .btn{background:var(--cream); color:var(--ink); border-color:var(--cream); box-shadow:4px 4px 0 var(--pink);}
+  #contact .btn:hover{background:var(--yellow); box-shadow:7px 7px 0 var(--pink);}
+  #contact .btn span{font-weight:400; letter-spacing:.02em; text-transform:none;}
+  .big-word{
+    font-family:"Bagel Fat One"; font-size:clamp(40px,8vw,96px); line-height:.9; margin:36px 0 0; display:flex; justify-content:center;
+    color:var(--cream); -webkit-text-stroke:.08em var(--cream); letter-spacing:-.01em; user-select:none;
+  }
+  .big-word span{display:inline-block; transition:transform .25s cubic-bezier(.3,1.8,.5,1), color .2s;}
+  .big-word span:nth-child(3n+1){color:var(--cream);} 
+  .big-word span:nth-child(3n+2){color:var(--ink); -webkit-text-stroke:.08em var(--cream);}
+  .big-word span:nth-child(3n){color:var(--cream); -webkit-text-stroke:.08em var(--mint);}
+  .big-word span:hover{transform:translateY(-.12em) rotate(-8deg);}
 
-  @media(max-width:480px){
-    .stamp{width:56px; height:56px; font-size:9px;}
+  footer{
+    background:var(--ink); color:#bdb7a8; border-top:1.5px solid rgba(255,253,246,.2);
+    padding:18px 20px 22px; text-align:center; font-family:"Space Mono"; font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  }
+
+  /* click sparkles */
+  .spark{position:fixed; pointer-events:none; z-index:999; font-size:18px; color:var(--gold); -webkit-text-stroke:1px var(--ink); animation:pop .8s ease-out forwards;}
+  @keyframes pop{from{transform:translate(0,0) scale(1) rotate(0); opacity:1}to{transform:translate(var(--x),var(--y)) scale(.3) rotate(240deg); opacity:0}}
+
+  /* progress bar */
+  .prog{position:fixed; top:0; left:0; height:5px; width:0; background:linear-gradient(90deg,var(--pink),var(--yellow),var(--mint),var(--blue)); z-index:200; border-bottom:1.5px solid var(--ink);}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none !important; transition:none !important;}
+    .rv{opacity:1; transform:none;}
+    .mark{background-size:100% 100%;}
   }
 </style>
 </head>
 <body>
 
-<div class="frame">
+<div class="prog" id="prog"></div>
 
-  <!-- ===== chrome bar (matches reference top bar exactly) ===== -->
-  <div class="chrome-bar">
-    <div class="dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-    <nav class="chrome-nav">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#work">Work</a>
-      <a href="#playground">Playground</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="chrome-right">
-      <span class="status-dot" style="background:var(--hl-mint); border:1px solid var(--ink)"></span>
-      <span class="status-dot" style="background:var(--hl-pink); border:1px solid var(--ink)"></span>
-      <a class="btn-contact" href="#contact">Contact</a>
-    </div>
+<!-- ===== floating nav ===== -->
+<header class="nav">
+  <a class="logo" href="#home" aria-label="Home"><span class="dot"></span><span class="dot"></span><span class="dot"></span></a>
+  <nav class="nav-links">
+    <a href="#home" class="on">Home</a>
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#playground">Playground</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="nav-right">
+    <span class="pill-dot" style="background:var(--mint)"></span>
+    <span class="pill-dot" style="background:var(--pink)"></span>
+    <a class="btn-pill" href="#contact">Contact</a>
   </div>
+</header>
+
+<div class="sheet">
 
   <!-- ===== HERO ===== -->
-  <section id="home" style="text-align:center; position:relative;">
-    <span class="stamp" style="position:absolute; left:8px; top:8px; background:var(--hl-yellow); transform:rotate(-8deg);">open<br/>to work</span>
-    <span class="stamp" style="position:absolute; right:8px; top:40px; background:var(--hl-mint); transform:rotate(6deg);">2026<br/>grad</span>
+  <section id="home" class="pad">
+    <div class="float hide-s" style="left:3%; top:12%; --d:.2s;"><div class="stamp s1">open<br/>to work</div></div>
+    <div class="float hide-s" style="right:4%; top:20%; --d:1s;"><div class="stamp s2" style="animation-direction:reverse">2026<br/>grad</div></div>
 
-    <p class="hand eyebrow">hey, i'm</p>
-    <div style="position:relative; display:inline-block; margin-top:10px; max-width:100%;">
-      <span class="tape" style="left:-18px; top:-10px; transform:rotate(-10deg);"></span>
-      <span class="tape" style="right:-18px; top:-10px; transform:rotate(10deg);"></span>
-      <h1 class="display" style="font-size:clamp(38px,10vw,64px); padding:6px 20px; border:2.5px solid var(--hl-pink); text-transform:uppercase; margin:0;">AYUSHI</h1>
+    <div class="float" data-depth="30" style="left:9%; top:46%;"><svg width="54" height="54" viewBox="0 0 24 24"><path d="M12 1l3.1 6.9 7.4.8-5.5 5 1.6 7.3L12 17.2 5.4 21l1.6-7.3-5.5-5 7.4-.8z" fill="#e8b934" stroke="#201d1b" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+    <div class="float" data-depth="-20" style="right:12%; top:9%; --d:.7s;"><svg width="30" height="30" viewBox="0 0 24 24"><path d="M12 1l3.1 6.9 7.4.8-5.5 5 1.6 7.3L12 17.2 5.4 21l1.6-7.3-5.5-5 7.4-.8z" fill="#e8b934" stroke="#201d1b" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+    <div class="float hide-s" data-depth="-40" style="left:22%; top:8%; --d:1.4s;"><svg width="36" height="36" viewBox="0 0 24 24"><path d="M12 1l3.1 6.9 7.4.8-5.5 5 1.6 7.3L12 17.2 5.4 21l1.6-7.3-5.5-5 7.4-.8z" fill="#ffc6d8" stroke="#201d1b" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+    <div class="float hide-s" data-depth="25" style="right:8%; top:52%;">
+      <svg width="76" height="54" viewBox="0 0 76 54"><rect x="2" y="2" width="72" height="38" rx="19" fill="#fffdf6" stroke="#201d1b" stroke-width="2.5"/><path d="M20 40 L14 52 L32 40Z" fill="#fffdf6" stroke="#201d1b" stroke-width="2.5" stroke-linejoin="round"/><circle cx="25" cy="21" r="4" fill="#201d1b"/><circle cx="38" cy="21" r="4" fill="#201d1b"/><circle cx="51" cy="21" r="4" fill="#201d1b"/></svg>
     </div>
+    <div class="float hide-s" data-depth="35" style="left:6%; top:68%; --d:.5s;"><div class="bubble-tag" style="transform:rotate(-7deg);">&gt;&gt;&gt; python</div></div>
+    <div class="float hide-s" data-depth="-30" style="right:5%; top:78%; --d:1.2s;"><div class="bubble-tag" style="background:var(--yellow); transform:rotate(6deg);">SQL ✿</div></div>
 
-    <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:18px;">
+    <span class="eyebrow-tag rv">hey, i'm</span>
+    <h1 class="name" aria-label="Ayushi">
+      <span class="L d" style="--i:0" aria-hidden="true">a</span><span class="L y" style="--i:1" aria-hidden="true">y</span><span class="L p" style="--i:2" aria-hidden="true">u</span><span class="L y" style="--i:3" aria-hidden="true">s</span><span class="L bl" style="--i:4" aria-hidden="true">h</span><span class="L yl" style="--i:5" aria-hidden="true">i</span><span class="L period" style="--i:6; color:var(--ink);" aria-hidden="true">.</span>
+    </h1>
+
+    <div class="hero-chips rv d1">
       <span class="chip m">B.Tech Graduate</span>
       <span class="chip y">Python Developer</span>
       <span class="chip b">Data Analytics</span>
       <span class="chip l">Data Engineering</span>
     </div>
 
-    <p style="max-width:640px; margin:22px auto 0; font-size:clamp(17px,3.6vw,24px); font-weight:600; line-height:1.35;">
-      I build <span class="marker-underline">Python</span>-powered applications and data systems that turn messy data into useful, real-world solutions.✿
+    <p class="lead rv d2">
+      I build <span class="mark">Python</span>-powered applications and data systems that turn messy data into useful, real-world solutions.✿
     </p>
 
-    <div style="display:flex; gap:12px; justify-content:center; margin-top:26px; flex-wrap:wrap;">
-      <a class="btn-ink" href="#work">See my work</a>
-      <a class="btn-outline" href="#contact">Hire me</a>
+    <div class="btn-row rv d3">
+      <a class="btn" href="#work">See my work</a>
+      <a class="btn out" href="#contact">Hire me</a>
+    </div>
+
+    <div class="ground" aria-hidden="true">
+      <div class="sk">Python</div>
+      <div class="sk">SQL</div>
+      <div class="sk">Power BI</div>
+      <div class="sk">Kafka</div>
     </div>
   </section>
 
+
   <!-- ===== ABOUT ===== -->
-<section id="about">
-  <p class="hand eyebrow">about me</p>
-  <h2 class="h-section">About</h2>
+  <section id="about" class="pad grid-paper">
+    <p class="tag rv">about me</p>
+    <h2 class="h-serif rv"><em>About</em></h2>
 
-  <div style="display:grid; grid-template-columns:1fr; gap:24px; margin-top:26px;">
-    <div style="display:grid; grid-template-columns:1fr; gap:20px;" class="about-grid">
-
-      <div style="order:2;" class="about-main">
-
-
-
-        <div class="paper-soft" style="padding:20px; margin-top:0; font-size:15px; line-height:1.7;">
+    <div class="about-wrap">
+      <div>
+        <div class="note rv">
+          <span class="tape" style="left:34px; transform:rotate(-5deg);"></span>
           <p>
-           I enjoy using Python across backend development, analytics, and machine learning to build practical solutions..
+            I enjoy using Python across backend development, analytics, and machine learning to build practical solutions..
           </p>
-
           <p>
             I've worked with Python, SQL, Pandas, Scikit-learn, PySpark, Kafka
             and Power BI, and I've built projects around analytics, machine
             learning, NLP and data engineering.
           </p>
-
           <p>
             I enjoy learning new things, building practical projects, and turning
             data into something useful.
           </p>
         </div>
 
-        <div class="paper-card" style="padding:20px; margin-top:16px; position:relative;">
-          <span class="tape" style="left:34px; top:-11px; transform:rotate(-6deg);"></span>
+        <div class="work-with rv">
+          <p class="hand">what I work with</p>
+          <div class="chips">
+            <span class="chip y">Python</span>
+            <span class="chip o">SQL</span>
+            <span class="chip m">Pandas / NumPy</span>
+            <span class="chip b">Power BI</span>
+            <span class="chip m">PostgreSQL / MySQL</span>
+            <span class="chip p">FastAPI</span>
+            <span class="chip l">Apache Kafka</span>
+            <span class="chip o">ETL Pipelines</span>
+            <span class="chip b">Dashboard Design</span>
+            <span class="chip m">Git / GitHub</span>
+            <span class="chip b">Django</span>
+          </div>
+        </div>
+      </div>
 
-          <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:0;">
-            ▸ things I enjoy working with
-          </p>
-
-          <ul style="margin:14px 0 0; padding:0; list-style:none; font-size:14px; line-height:1.7;">
-            <li>▸ Python &amp; SQL</li>
-            <li>▸ Data analysis &amp; visualization</li>
-            <li>▸ Machine learning &amp; NLP</li>
-            <li>▸ Data pipelines &amp; processing</li>
-            <li>▸ APIs &amp; data-driven applications</li>
-          </ul>
-
-          <pre class="mono" style="margin-top:16px; background:var(--ink); color:var(--paper); padding:14px; font-size:12px; overflow-x:auto; white-space:pre-wrap; word-break:break-word;">&gt;&gt;&gt; from ayushi import skills
+      <div class="list-card rv d1">
+        <span class="tape" style="right:34px; transform:rotate(6deg);"></span>
+        <p class="lab">▸ things I enjoy working with</p>
+        <ul>
+          <li>▸ Python &amp; SQL</li>
+          <li>▸ Data analysis &amp; visualization</li>
+          <li>▸ Machine learning &amp; NLP</li>
+          <li>▸ Data pipelines &amp; processing</li>
+          <li>▸ APIs &amp; data-driven applications</li>
+        </ul>
+        <pre class="repl mono" id="repl" data-text="&gt;&gt;&gt; from ayushi import skills
+&gt;&gt;&gt; skills.top(3)
+['python', 'sql', 'data science']
+&gt;&gt;&gt; skills.status
+'open to work ✿'">&gt;&gt;&gt; from ayushi import skills
 &gt;&gt;&gt; skills.top(3)
 ['python', 'sql', 'data science']
 &gt;&gt;&gt; skills.status
 'open to work ✿'</pre>
-        </div>
-        <div style="margin-top:16px;">
-          <p class="hand" style="font-size:19px; color:var(--ink-soft); margin-bottom:10px;">
-            what I work with
-          </p>
-
-          <div style="display:flex; flex-wrap:wrap; gap:8px;">
-            <span class="chip y">Python</span>
-<span class="chip o">SQL</span>
-<span class="chip m">Pandas / NumPy</span>
-<span class="chip b">Power BI</span>
-<span class="chip m">PostgreSQL / MySQL</span>
-<span class="chip p">FastAPI</span>
-<span class="chip l">Apache Kafka</span>
-<span class="chip o">ETL Pipelines</span>
-<span class="chip b">Dashboard Design</span>
-<span class="chip m">Git / GitHub</span>
-<span class="chip b">Django</span>
-
-          </div>
-        </div>
-
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- ===== FEATURED WORK ===== -->
-  <section id="work">
-    <p class="hand eyebrow">the good stuff</p>
-    <h2 class="h-section">Projects</h2>
+  <section id="work" class="pad" style="background:var(--paper); border-top:2px solid var(--ink);">
+    <div class="projects-head">
+      <p class="tag rv">the good stuff</p>
+      <h2 class="h-serif rv">Projects</h2>
+    </div>
 
+    <div class="proj-list">
 
-    <!-- ===== project 01 detail ===== -->
-    <div id="p1" style="margin-top:36px; scroll-margin-top:70px;">
-      <div class="split-panel">
-        <div class="split-dark">
-          <span class="mono" style="font-size:11px; letter-spacing:.1em; opacity:.7;">PROJECT 01</span>
-          <h3 class="display" style="font-size:clamp(24px,5vw,34px); text-transform:uppercase; margin:8px 0 4px;">Beauty Analytics</h3>
-          <p class="hand" style="font-size:20px; opacity:.85; margin:0 0 14px;">Semantic search and sentiment over 3.7M Sephora reviews.</p>
-          <p style="font-size:14px; line-height:1.7; opacity:.9;">Star ratings flatten everything. A 4.4 tells you nothing about whether a
+      <!-- project 01 -->
+      <article class="proj rv" id="p1">
+        <div class="pn tint" style="--c:var(--pink);">
+          <span class="pnum">PROJECT 01</span>
+          <h3 class="ptitle">Beauty Analytics</h3>
+          <p class="ptag">Semantic search and sentiment over 3.7M Sephora reviews.</p>
+          <p class="pdesc">Star ratings flatten everything. A 4.4 tells you nothing about whether a
             cleanser breaks out acne-prone skin or whether people only hate the pump. This tool lets the
             review text itself answer the buying question — searchable by meaning across 8K products.</p>
-          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:16px;">
-            <span class="chip m" style="color:var(--ink);">React</span><span class="chip y" style="color:var(--ink);">FastAPI</span>
-            <span class="chip p" style="color:var(--ink);">SentenceTransformers</span><span class="chip b" style="color:var(--ink);">VADER</span>
+          <div class="pchips">
+            <span class="chip m">React</span><span class="chip y">FastAPI</span>
+            <span class="chip b">SentenceTransformers</span><span class="chip l">VADER</span>
           </div>
-          <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:20px;">
-           <a class="btn-ink" style="margin:0;" href="https://github.com/ayushi771/beauty-analytics" target="_blank" rel="noreferrer">Github link ↗</a>
-          <a class="btn-ink" style="margin:0;" href="https://beauty-analytics-murex.vercel.app" target="_blank" rel="noreferrer">Live demo ↗</a>
+          <div class="plinks">
+            <a class="btn" href="https://github.com/ayushi771/beauty-analytics" target="_blank" rel="noreferrer">Github link ↗</a>
+            <a class="btn out" href="https://beauty-analytics-murex.vercel.app" target="_blank" rel="noreferrer">Live demo ↗</a>
           </div>
         </div>
-        <div class="split-light">
-          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(90px,1fr)); gap:10px;">
-            <div class="stat-box"><div class="val">3.7M</div><div class="lab">reviews processed</div></div>
-            <div class="stat-box"><div class="val">8K</div><div class="lab">products indexed</div></div>
-            <div class="stat-box"><div class="val">&lt;1s</div><div class="lab">search response</div></div>
+        <div class="pn paper">
+          <div class="stats">
+            <div class="stat"><div class="val" data-count="3.7" data-dec="1" data-suf="M">3.7M</div><div class="lb">reviews processed</div></div>
+            <div class="stat"><div class="val" data-count="8" data-suf="K">8K</div><div class="lb">products indexed</div></div>
+            <div class="stat"><div class="val">&lt;1s</div><div class="lb">search response</div></div>
           </div>
-          <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:20px 0 8px;">what I built</p>
-          <ul style="margin:0; padding:0; list-style:none; font-size:13.5px; line-height:1.7;">
-            <li>▸ Precomputed sentence-transformer embeddings for millisecond semantic search</li>
-            <li>▸ Aspect-level sentiment across texture, results, price, packaging, scent</li>
-            <li>▸ INCI-list ingredient safety analyzer flagged against skin type</li>
-            <li>▸ Groq-generated verdicts grounded in retrieved review evidence</li>
+          <p class="lab sub">what I built</p>
+          <ul class="blist">
+            <li>Precomputed sentence-transformer embeddings for millisecond semantic search</li>
+            <li>Aspect-level sentiment across texture, results, price, packaging, scent</li>
+            <li>INCI-list ingredient safety analyzer flagged against skin type</li>
+            <li>Groq-generated verdicts grounded in retrieved review evidence</li>
           </ul>
-          <p class="hand" style="font-size:18px; margin-top:16px;"><span class="marker-underline">what I learned:</span> precomputation is a design decision, not an optimization.</p>
+          <p class="learned"><span class="mark">what I learned:</span> precomputation is a design decision, not an optimization.</p>
         </div>
-      </div>
-    </div>
+      </article>
 
-    <!-- ===== project 02 detail ===== -->
-    <div id="p2" style="margin-top:24px; scroll-margin-top:70px;">
-      <div class="split-panel">
-        <div class="split-light">
-          <span class="mono" style="font-size:11px; letter-spacing:.1em; color:var(--ink-soft);">PROJECT 02</span>
-          <h3 class="display" style="font-size:clamp(24px,5vw,34px); text-transform:uppercase; margin:8px 0 4px;">Bliss Salon Analytics</h3>
-          <p class="hand" style="font-size:20px; color:var(--ink-soft); margin:0 0 14px;">Kafka to PySpark to Postgres to live Power BI.</p>
-          <p style="font-size:14px; line-height:1.7;">A multi-branch salon chain reviewed performance from a spreadsheet exported
+      <!-- project 02 -->
+      <article class="proj rv" id="p2">
+        <div class="pn paper">
+          <span class="pnum">PROJECT 02</span>
+          <h3 class="ptitle">Bliss Salon Analytics</h3>
+          <p class="ptag">Kafka to PySpark to Postgres to live Power BI.</p>
+          <p class="pdesc">A multi-branch salon chain reviewed performance from a spreadsheet exported
             once a week. No-shows, inventory dips and staff load were discovered days too late to act on —
             so I built a live pipeline instead.</p>
-          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:16px;">
+          <div class="pchips">
             <span class="chip b">Apache Kafka</span><span class="chip m">PySpark</span><span class="chip y">PostgreSQL</span><span class="chip l">Power BI / DAX</span>
           </div>
-          <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:22px 0 8px;">what I built</p>
-          <ul style="margin:0; padding:0; list-style:none; font-size:13.5px; line-height:1.7;">
-            <li>▸ Dockerized Kafka topic fed by an appointment event generator</li>
-            <li>▸ PySpark Structured Streaming consumer validating and enriching into Postgres</li>
-            <li>▸ Gold analytics layer tuned for fast DirectQuery dashboards</li>
-            <li>▸ DAX measures for WoW revenue, no-show rate, branch ranking</li>
+          <p class="lab sub">what I built</p>
+          <ul class="blist">
+            <li>Dockerized Kafka topic fed by an appointment event generator</li>
+            <li>PySpark Structured Streaming consumer validating and enriching into Postgres</li>
+            <li>Gold analytics layer tuned for fast DirectQuery dashboards</li>
+            <li>DAX measures for WoW revenue, no-show rate, branch ranking</li>
           </ul>
         </div>
-        <div class="split-dark" style="padding:16px;">
+        <div class="pn tint" style="--c:var(--blue);">
+          <p class="lab" style="margin:0 0 12px;">project preview</p>
+          <div class="shot">
+            <img class="fixed" src="images/bliss-salon-preview.png" alt="Bliss Salon Analytics Platform">
+          </div>
+          <p class="cap">A real-time salon analytics platform built with Kafka, PySpark, PostgreSQL and Power BI.</p>
+          <div class="plinks">
+            <a class="btn" href="https://github.com/ayushi771/bliss-salon-analytics" target="_blank" rel="noreferrer">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
 
-  <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; opacity:.7; margin:0 0 10px;">
-    project preview
-  </p>
+      <!-- project 03 -->
+      <article class="proj rv" id="p3">
+        <div class="pn tint" style="--c:var(--green);">
+          <p class="lab" style="margin:0 0 12px;">project preview</p>
+          <div class="shot">
+            <img src="images/bi-portal-preview.png" alt="BI Portal project">
+          </div>
+          <div class="plinks">
+            <a class="btn" href="https://github.com/ayushi771/bi-portal" target="_blank" rel="noreferrer">GitHub ↗</a>
+          </div>
+        </div>
+        <div class="pn paper">
+          <span class="pnum">PROJECT 03</span>
+          <h3 class="ptitle">BI Portal</h3>
+          <p class="ptag">A secure, role-based portal for managing BI dashboards.</p>
+          <p class="lab sub">the idea</p>
+          <p class="pdesc">A dashboard portal designed to give different users access to the
+            right BI resources through authentication and role-based permissions.</p>
+          <p class="lab sub">what I built</p>
+          <ul class="blist">
+            <li>JWT-based authentication and secure password handling</li>
+            <li>Role-based access for admins and users</li>
+            <li>Dashboard access through Apache Superset</li>
+            <li>Admin tools for managing users and permissions</li>
+          </ul>
+          <div class="pchips">
+            <span class="chip l">FastAPI</span>
+            <span class="chip m">SQLAlchemy</span>
+            <span class="chip y">JWT</span>
+            <span class="chip b">Superset</span>
+          </div>
+        </div>
+      </article>
 
-  <div style="background:var(--paper); padding:6px;">
-   <img
-  src="images/bliss-salon-preview.png"
-  alt="Bliss Salon Analytics Platform"
-  style="width:100%; height:360px; object-fit:contain; display:block; background:#f5f5f7;"
->
-  </div>
+      <!-- project 04 -->
+      <article class="proj rv" id="p4">
+        <div class="pn paper">
+          <span class="pnum">PROJECT 04</span>
+          <h3 class="ptitle">Tweet Detector</h3>
+          <p class="ptag">Is this tweet about a real disaster, or just a metaphor?</p>
+          <p class="pdesc">A text classification model that identifies whether a tweet
+            describes a real disaster or is simply using disaster-related
+            language metaphorically.</p>
+          <div class="pchips">
+            <span class="chip o">Scikit-learn</span>
+            <span class="chip p">PyTorch</span>
+            <span class="chip m">Streamlit</span>
+          </div>
+        </div>
+        <div class="pn tint" style="--c:var(--lilac);">
+          <p class="lab" style="margin:0 0 10px;">the project</p>
+          <p class="pdesc">Built and deployed a machine learning classifier that processes
+            tweet text and predicts whether it refers to an actual disaster.</p>
+          <p class="lab sub">what I worked on</p>
+          <ul class="blist">
+            <li>Text preprocessing and feature extraction</li>
+            <li>Machine learning model training and evaluation</li>
+            <li>Classification of disaster vs. non-disaster tweets</li>
+            <li>Streamlit interface for real-time predictions</li>
+          </ul>
+          <div class="plinks">
+            <a class="btn" href="https://github.com/ayushi771/tweet-detector" target="_blank" rel="noreferrer">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
 
-  <p style="font-size:14px; line-height:1.5; margin:12px 0 0; opacity:.9;">
-    A real-time salon analytics platform built with Kafka, PySpark, PostgreSQL and Power BI.
-  </p>
-
-  <div style="display:flex; gap:8px; margin-top:12px;">
-    <a class="btn-ink" style="margin:0;" href="https://github.com/ayushi771/bliss-salon-analytics" target="_blank" rel="noreferrer">
-      GitHub ↗
-    </a>
-
-  </div>
-
-</div>
-      </div>
-    </div>
-
-
-    <!-- ===== project 03 detail ===== -->
- <div id="p3" style="margin-top:24px; scroll-margin-top:70px;">
-  <div class="split-panel">
-
-    <!-- LEFT -->
-    <div class="split-dark" style="padding:20px;">
-
-      <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; opacity:.7; margin:0 0 10px;">
-    project preview
-  </p>
-
-      <!-- PROJECT IMAGE -->
-<div style="background:var(--paper); padding:6px; margin-top:8px;">
-  <img
-    src="images/bi-portal-preview.png"
-    alt="BI Portal project"
-    style="width:100%; height:auto; display:block;"
-  >
-</div>
-
-       <div style="display:flex; gap:8px; margin-top:20px; flex-wrap:wrap;">
-        <a class="btn-ink" style="margin:0;"
-           href="https://github.com/ayushi771/bi-portal"
-           target="_blank" rel="noreferrer">
-          GitHub ↗
-        </a>
-
-
-      </div>
-
-    </div>
-
-
-    <!-- RIGHT -->
-    <div class="split-light" style="padding:20px;">
-       <span class="mono" style="font-size:11px; letter-spacing:.1em; opacity:.7;">
-        PROJECT 03
-      </span>
-
-      <h3 class="display" style="font-size:clamp(22px,5vw,32px); text-transform:uppercase; margin:8px 0 4px;">
-        BI Portal
-      </h3>
-
-      <p class="hand" style="font-size:19px; opacity:.85; margin:0 0 16px;">
-        A secure, role-based portal for managing BI dashboards.
-      </p>
-      <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:0 0 10px;">
-        the idea
-      </p>
-
-      <p style="font-size:14px; line-height:1.7; margin:0;">
-        A dashboard portal designed to give different users access to the
-        right BI resources through authentication and role-based permissions.
-      </p>
-
-      <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:20px 0 8px;">
-        what I built
-      </p>
-
-      <ul style="margin:0; padding:0; list-style:none; font-size:13.5px; line-height:1.7;">
-        <li>▸ JWT-based authentication and secure password handling</li>
-        <li>▸ Role-based access for admins and users</li>
-        <li>▸ Dashboard access through Apache Superset</li>
-        <li>▸ Admin tools for managing users and permissions</li>
-      </ul>
-
-
-<div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:14px;">
-        <span class="chip l" style="color:var(--ink);">FastAPI</span>
-        <span class="chip m" style="color:var(--ink);">SQLAlchemy</span>
-        <span class="chip y" style="color:var(--ink);">JWT</span>
-        <span class="chip b" style="color:var(--ink);">Superset</span>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-   <div id="p4" style="margin-top:24px; scroll-margin-top:70px;">
-  <div class="split-panel">
-
-    <!-- LEFT -->
-    <div class="split-light" style="padding:20px;">
-
-      <span class="mono" style="font-size:11px; letter-spacing:.1em; color:var(--ink-soft);">
-        PROJECT 04
-      </span>
-
-      <h3 class="display" style="font-size:clamp(22px,5vw,32px); text-transform:uppercase; margin:8px 0 4px;">
-        Tweet Detector
-      </h3>
-
-      <p class="hand" style="font-size:19px; color:var(--ink-soft); margin:0 0 14px;">
-        Is this tweet about a real disaster, or just a metaphor?
-      </p>
-
-      <p style="font-size:14px; line-height:1.7; margin:0;">
-        A text classification model that identifies whether a tweet
-        describes a real disaster or is simply using disaster-related
-        language metaphorically.
-      </p>
-
-      <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:16px;">
-        <span class="chip o">Scikit-learn</span>
-        <span class="chip p">PyTorch</span>
-        <span class="chip m">Streamlit</span>
-      </div>
-
-    </div>
-
-
-    <!-- RIGHT -->
-    <div class="split-dark" style="padding:20px;">
-
-      <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; opacity:.7; margin:0 0 10px;">
-        the project
-      </p>
-
-      <p style="font-size:14px; line-height:1.7; opacity:.9; margin:0;">
-        Built and deployed a machine learning classifier that processes
-        tweet text and predicts whether it refers to an actual disaster.
-      </p>
-
-      <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; opacity:.7; margin:20px 0 8px;">
-        what I worked on
-      </p>
-
-      <ul style="margin:0; padding:0; list-style:none; font-size:13.5px; line-height:1.7;">
-        <li>▸ Text preprocessing and feature extraction</li>
-        <li>▸ Machine learning model training and evaluation</li>
-        <li>▸ Classification of disaster vs. non-disaster tweets</li>
-        <li>▸ Streamlit interface for real-time predictions</li>
-      </ul>
-
-      <div style="display:flex; gap:8px; margin-top:20px; flex-wrap:wrap;">
-        <a class="btn-ink" style="margin:0;"
-           href="https://github.com/ayushi771/tweet-detector"
-           target="_blank" rel="noreferrer">
-          GitHub ↗
-        </a>
-
-
-      </div>
-
-    </div>
-
-  </div>
-</div>
-
-    <!-- ===== project 05 detail ===== -->
-    <div id="p5" style="margin-top:24px; scroll-margin-top:70px;">
-      <div class="split-panel">
-        <div class="split-dark">
-          <span class="mono" style="font-size:11px; letter-spacing:.1em; opacity:.7;">PROJECT 05</span>
-          <h3 class="display" style="font-size:clamp(24px,5vw,34px); text-transform:uppercase; margin:8px 0 4px;">Recipe Finder</h3>
-          <p class="hand" style="font-size:20px; opacity:.85; margin:0 0 14px;">Search recipes by what's actually in your fridge.</p>
-          <p style="font-size:14px; line-height:1.7; opacity:.9;">A modern recipe finder web app where you search by ingredients, filter by
+      <!-- project 05 -->
+      <article class="proj rv" id="p5">
+        <div class="pn tint" style="--c:var(--yellow);">
+          <span class="pnum">PROJECT 05</span>
+          <h3 class="ptitle">Recipe Finder</h3>
+          <p class="ptag">Search recipes by what's actually in your fridge.</p>
+          <p class="pdesc">A modern recipe finder web app where you search by ingredients, filter by
             cuisine, diet and meal type, save favorites, and manage your own account — built as a full-stack
             React + FastAPI project with a real auth flow rather than a static demo.</p>
-          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:16px;">
-            <span class="chip m" style="color:var(--ink);">React</span><span class="chip y" style="color:var(--ink);">Vite</span>
-            <span class="chip p" style="color:var(--ink);">FastAPI</span><span class="chip b" style="color:var(--ink);">PostgreSQL</span>
+          <div class="pchips">
+            <span class="chip m">React</span><span class="chip cream">Vite</span>
+            <span class="chip p">FastAPI</span><span class="chip b">PostgreSQL</span>
           </div>
-          <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:20px;">
-           <a class="btn-ink" style="margin:0;" href="https://github.com/ayushi771/Recipe-Finder-Website" target="_blank" rel="noreferrer">Github link ↗</a>
-          <a class="btn-ink" style="margin:0;" href="https://vite-project-2-guer.onrender.com/" target="_blank" rel="noreferrer">Live demo ↗</a>
+          <div class="plinks">
+            <a class="btn" href="https://github.com/ayushi771/Recipe-Finder-Website" target="_blank" rel="noreferrer">Github link ↗</a>
+            <a class="btn out" href="https://vite-project-2-guer.onrender.com/" target="_blank" rel="noreferrer">Live demo ↗</a>
           </div>
         </div>
-        <div class="split-light">
-          <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:0 0 8px;">what I built</p>
-          <ul style="margin:0; padding:0; list-style:none; font-size:13.5px; line-height:1.7;">
-            <li>▸ Ingredient-based recipe search with cuisine, diet and meal-type filters</li>
-            <li>▸ Full auth flow — login, register and forgot password</li>
-            <li>▸ Per-user saved favorites via an async SQLAlchemy + AsyncPG backend</li>
-            <li>▸ Framer Motion transitions and React Hot Toast feedback across a fully responsive UI</li>
+        <div class="pn paper">
+          <p class="lab" style="margin:0 0 8px;">what I built</p>
+          <ul class="blist">
+            <li>Ingredient-based recipe search with cuisine, diet and meal-type filters</li>
+            <li>Full auth flow — login, register and forgot password</li>
+            <li>Per-user saved favorites via an async SQLAlchemy + AsyncPG backend</li>
+            <li>Framer Motion transitions and React Hot Toast feedback across a fully responsive UI</li>
           </ul>
-          <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:20px 0 8px;">stack</p>
-          <div style="display:flex; flex-wrap:wrap; gap:6px;">
+          <p class="lab sub">stack</p>
+          <div class="pchips" style="margin-top:0;">
             <span class="chip o">SQLAlchemy</span><span class="chip l">AsyncPG</span><span class="chip m">Framer Motion</span><span class="chip y">React Hot Toast</span>
           </div>
-          <p class="hand" style="font-size:18px; margin-top:16px;"><span class="marker-underline">deployed:</span> frontend and backend both live on Render.</p>
+          <p class="learned"><span class="mark">deployed:</span> frontend and backend both live on Render.</p>
         </div>
-      </div>
-    </div>
+      </article>
 
-    <!-- ===== project 06 detail ===== -->
-    <div id="p6" style="margin-top:24px; scroll-margin-top:70px;">
-      <div class="split-panel">
-        <div class="split-light">
-          <span class="mono" style="font-size:11px; letter-spacing:.1em; color:var(--ink-soft);">PROJECT 06</span>
-          <h3 class="display" style="font-size:clamp(24px,5vw,34px); text-transform:uppercase; margin:8px 0 4px;">Attendance Module</h3>
-          <p class="hand" style="font-size:20px; color:var(--ink-soft); margin:0 0 14px;">Shift-aware punch in / punch out, calculated automatically.</p>
-          <p style="font-size:14px; line-height:1.7;">A Django + DRF + PostgreSQL attendance system where employees punch in and
+      <!-- project 06 -->
+      <article class="proj rv" id="p6">
+        <div class="pn paper">
+          <span class="pnum">PROJECT 06</span>
+          <h3 class="ptitle">Attendance Module</h3>
+          <p class="ptag">Shift-aware punch in / punch out, calculated automatically.</p>
+          <p class="pdesc">A Django + DRF + PostgreSQL attendance system where employees punch in and
             out, and First Half / Second Half / Total Worked are derived automatically from punch times and each
             employee's assigned shift — including night shifts that cross midnight.</p>
-          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:16px;">
+          <div class="pchips">
             <span class="chip b">Django</span><span class="chip m">DRF</span><span class="chip y">PostgreSQL</span>
           </div>
-
         </div>
-        <div class="split-dark" style="padding:16px;">
-
-  <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; opacity:.7; margin:0 0 10px;">
-    project preview
-  </p>
-
-  <p style="font-size:14px; line-height:1.5; margin:0; opacity:.9;">
-    A shift-aware attendance system with a live-updating dashboard, an admin-visible late/early/missing-punch-out
-    trail, and dedicated concurrency tests proving race-condition protection under simultaneous load.
-  </p>
- <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:22px 0 8px;">what I built</p>
-          <ul style="margin:0; padding:0; list-style:none; font-size:13.5px; line-height:1.7;">
-            <li>▸ Live-updating dashboard — punch card, activity feed, late/early/missing-punch-out alerts</li>
-            <li>▸ Immutable punch log with attendance always re-derived, never edited directly</li>
-            <li>▸ Row-level locking (select_for_update) so simultaneous punches can't create race conditions</li>
-            <li>▸ 25 automated tests covering exact threshold boundaries and dedicated concurrency scenarios</li>
+        <div class="pn tint" style="--c:var(--orange);">
+          <p class="lab" style="margin:0 0 10px;">project preview</p>
+          <p class="pdesc">A shift-aware attendance system with a live-updating dashboard, an admin-visible late/early/missing-punch-out
+            trail, and dedicated concurrency tests proving race-condition protection under simultaneous load.</p>
+          <p class="lab sub">what I built</p>
+          <ul class="blist">
+            <li>Live-updating dashboard — punch card, activity feed, late/early/missing-punch-out alerts</li>
+            <li>Immutable punch log with attendance always re-derived, never edited directly</li>
+            <li>Row-level locking (select_for_update) so simultaneous punches can't create race conditions</li>
+            <li>25 automated tests covering exact threshold boundaries and dedicated concurrency scenarios</li>
           </ul>
-  <div style="display:flex; gap:8px; margin-top:16px;">
-    <a class="btn-ink" style="margin:0;" href="https://github.com/ayushi771/attendance-module-assignment" target="_blank" rel="noreferrer">
-      GitHub ↗
-    </a>
+          <div class="plinks">
+            <a class="btn" href="https://github.com/ayushi771/attendance-module-assignment" target="_blank" rel="noreferrer">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
 
-  </div>
-
-</div>
-      </div>
-    </div>
-
-    <!-- ===== project 07 detail ===== -->
-    <div id="p7" style="margin-top:24px; scroll-margin-top:70px;">
-      <div class="split-panel">
-        <div class="split-dark">
-          <span class="mono" style="font-size:11px; letter-spacing:.1em; color:var(--ink-soft);">PROJECT 07</span>
-          <h3 class="display" style="font-size:clamp(24px,5vw,34px); text-transform:uppercase; margin:8px 0 4px;">Amul Digital Shelf Intelligence</h3>
-          <p class="hand" style="font-size:20px; color:var(--ink-soft); margin:0 0 14px;">Comparing Amul's official catalogue against 4 quick-commerce platforms.</p>
-          <p style="font-size:14px; line-height:1.7;">An end-to-end pipeline and Power BI dashboard tracking where Amul products are
+      <!-- project 07 -->
+      <article class="proj rv" id="p7">
+        <div class="pn tint" style="--c:var(--mint);">
+          <span class="pnum">PROJECT 07</span>
+          <h3 class="ptitle">Amul Digital Shelf Intelligence</h3>
+          <p class="ptag">Comparing Amul's official catalogue against 4 quick-commerce platforms.</p>
+          <p class="pdesc">An end-to-end pipeline and Power BI dashboard tracking where Amul products are
             actually listed, in stock, and priced across Blinkit, Zepto, Instamart and BigBasket. When automated
             catalogue scraping turned out to be deliberately blocked by anti-bot protections, I documented the
             investigation and pivoted to a traceable manual-collection workflow instead of working around it.</p>
-          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:16px;">
-            <span class="chip m">Python</span><span class="chip y">PostgreSQL</span><span class="chip b">Power BI / DAX</span><span class="chip l">TypeScript</span>
+          <div class="pchips">
+            <span class="chip g">Python</span><span class="chip y">PostgreSQL</span><span class="chip b">Power BI / DAX</span><span class="chip l">TypeScript</span>
           </div>
-          <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:22px 0 8px;">what I built</p>
-          <ul style="margin:0; padding:0; list-style:none; font-size:13.5px; line-height:1.7;">
-            <li>▸ Star-schema PostgreSQL pipeline with fuzzy product matching (rapidfuzz, confidence-scored)</li>
-            <li>▸ Investigated and documented a site's anti-bot protections; pivoted to a traceable manual-collection workflow</li>
-            <li>▸ Power BI dashboard with DAX measures for listing coverage, price intelligence and platform performance</li>
-            <li>▸ Custom Power BI visual (TypeScript) for prioritized stock/delivery/discount alerts</li>
+          <p class="lab sub">what I built</p>
+          <ul class="blist">
+            <li>Star-schema PostgreSQL pipeline with fuzzy product matching (rapidfuzz, confidence-scored)</li>
+            <li>Investigated and documented a site's anti-bot protections; pivoted to a traceable manual-collection workflow</li>
+            <li>Power BI dashboard with DAX measures for listing coverage, price intelligence and platform performance</li>
+            <li>Custom Power BI visual (TypeScript) for prioritized stock/delivery/discount alerts</li>
           </ul>
-          <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:20px;">
-           <a class="btn-ink" style="margin:0;" href="https://github.com/ayushi771/Amul-quick-commerce-analytics" target="_blank" rel="noreferrer">Github link ↗</a>
+          <div class="plinks">
+            <a class="btn" href="https://github.com/ayushi771/Amul-quick-commerce-analytics" target="_blank" rel="noreferrer">Github link ↗</a>
           </div>
         </div>
-        <div class="split-light" style="padding:16px;">
+        <div class="pn paper">
+          <p class="lab" style="margin:0 0 12px;">project preview</p>
+          <div class="shot">
+            <img class="fixed" src="images/amul-digital-shelf-preview.png" alt="Amul Digital Shelf Intelligence dashboard">
+          </div>
+          <p class="cap">A Power BI dashboard tracking listing coverage, price intelligence and platform performance across
+            four quick-commerce platforms, plus a custom alert visual for stock and delivery issues.</p>
+        </div>
+      </article>
 
-  <p style="font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; opacity:.7; margin:0 0 10px;">
-    project preview
-  </p>
+    </div>
+  </section>
 
-  <div style="background:var(--paper); padding:6px;">
-   <img
-  src="images/amul-digital-shelf-preview.png"
-  alt="Amul Digital Shelf Intelligence dashboard"
-  style="width:100%; height:360px; object-fit:contain; display:block; background:#f5f5f7;"
->
-  </div>
-
-  <p style="font-size:14px; line-height:1.5; margin:12px 0 0; opacity:.9;">
-    A Power BI dashboard tracking listing coverage, price intelligence and platform performance across
-    four quick-commerce platforms, plus a custom alert visual for stock and delivery issues.
-  </p>
-
-</div>
+  <!-- ===== TOOLS ===== -->
+  <section style="background:var(--paper); padding-bottom:64px;">
+    <div class="tools-wrap">
+      <p class="hand rv">tools I use</p>
+      <div class="tool-badges">
+        <span class="tool-badge rv">Python</span>
+        <span class="tool-badge rv d1">SQL</span>
+        <span class="tool-badge rv d2">Pandas</span>
+        <span class="tool-badge rv d3">Power BI</span>
+        <span class="tool-badge rv">PySpark</span>
+        <span class="tool-badge rv d1">Kafka</span>
+        <span class="tool-badge rv d2">PostgreSQL</span>
+        <span class="tool-badge rv d3">TypeScript</span>
+        <span class="tool-badge rv">Git</span>
       </div>
     </div>
-      </section>
+  </section>
 
- <!-- ===== TOOLS ===== -->
-<section style="padding-top:0;">
-  <p class="hand" style="text-align:center; font-size:20px; color:var(--ink-soft);">
-    tools I use
-  </p>
-
-  <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:14px;">
-    <span class="tool-badge">Python</span>
-    <span class="tool-badge">SQL</span>
-    <span class="tool-badge">Pandas</span>
-    <span class="tool-badge">Power BI</span>
-    <span class="tool-badge">PySpark</span>
-    <span class="tool-badge">Kafka</span>
-    <span class="tool-badge">PostgreSQL</span>
-    <span class="tool-badge">TypeScript</span>
-    <span class="tool-badge">Git</span>
-  </div>
-</section>
-
-
-<!-- ===== PLAYGROUND ===== -->
-<section id="playground">
-  <p class="hand eyebrow">a little extra</p>
-  <h2 class="h-section">Just For Fun</h2>
-
-  <div style="display:grid; grid-template-columns:1fr; gap:12px; margin-top:20px;" class="play-grid">
-
-    <div class="sticky y tilt-l">
-      <p style="font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:0;">
-        python
-      </p>
-      <p class="hand" style="font-size:17px; margin-top:7px;">
-        If there's a repetitive task, I'll probably try to automate it.
-      </p>
-    </div>
-
-    <div class="sticky m tilt-r">
-      <p style="font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:0;">
-        data
-      </p>
-      <p class="hand" style="font-size:17px; margin-top:7px;">
-        I like finding the interesting story hidden inside messy data.
-      </p>
-    </div>
-
-    <div class="sticky b tilt-last">
-      <p style="font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; margin:0;">
-        currently
-      </p>
-      <p class="hand" style="font-size:17px; margin-top:7px;">
-        Learning, building, and looking for the next interesting problem.
-      </p>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ===== CONTACT ===== -->
-<section id="contact">
-  <p class="hand eyebrow" style="text-align:center;">say hi</p>
-
-  <div style="text-align:center;">
-    <div class="stamp" style="margin:6px auto 0; width:64px; height:64px; background:var(--hl-yellow); font-size:26px;">
-      🙂
-    </div>
-
-    <h2 class="h-section" style="margin-top:10px;">
-      Let's Talk
-    </h2>
-
-    <p style="max-width:480px; margin:10px auto 0; font-size:15px; color:var(--ink-soft);">
-      Interested in working together? I'd love to hear from you.
-    </p>
+  <!-- ticker 2 -->
+  <div class="ticker rev" aria-hidden="true">
+    <div class="tick-track" id="tk2"></div>
   </div>
 
-  <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-top:22px;">
+  <!-- ===== PLAYGROUND ===== -->
+  <section id="playground" class="pad grid-paper">
+    <p class="tag rv">a little extra</p>
+    <h2 class="h-serif rv">Just For <em>Fun</em></h2>
 
-     <a href="mailto:ansomani1007@gmail.com" class=" btn-ink">
-    ✉ Email
-    <span>ansomani1007@gmail.com</span>
-  </a>
+    <div class="play">
+      <div class="sticky y rv">
+        <p class="lab">python</p>
+        <p class="hand">If there's a repetitive task, I'll probably try to automate it.</p>
+      </div>
+      <div class="sticky m rv d1">
+        <p class="lab">data</p>
+        <p class="hand">I like finding the interesting story hidden inside messy data.</p>
+      </div>
+      <div class="sticky b rv d2">
+        <p class="lab">currently</p>
+        <p class="hand">Learning, building, and looking for the next interesting problem.</p>
+      </div>
+    </div>
+  </section>
 
-    <a href="https://www.linkedin.com/in/ayushi-somani-108540301/"
-       target="_blank"
-       rel="noreferrer"
-       class="btn-ink"
-       style="margin:0;">
-      LinkedIn ↗
-    </a>
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="pad">
+    <p class="tag rv">say hi</p>
+    <div class="stamp s1 rv" style="margin:10px auto 0; width:74px; height:74px; font-size:30px; animation:none;">🙂</div>
+    <h2 class="h-serif rv" style="margin-top:12px;">Let's <em>Talk</em></h2>
+    <p class="lets rv">Interested in working together? I'd love to hear from you.</p>
 
-    <a href="https://github.com/ayushi771"
-       target="_blank"
-       rel="noreferrer"
-       class="btn-ink"
-       style="margin:0;">
-      GitHub ↗
-    </a>
+    <div class="contact-btns rv d1">
+      <a href="mailto:ansomani1007@gmail.com" class="btn">
+        ✉ Email
+        <span>ansomani1007@gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/ayushi-somani-108540301/" target="_blank" rel="noreferrer" class="btn">LinkedIn ↗</a>
+      <a href="https://github.com/ayushi771" target="_blank" rel="noreferrer" class="btn">GitHub ↗</a>
+    </div>
 
-  </div>
-</section>
+    <div class="big-word" aria-hidden="true">
+      <span>a</span><span>y</span><span>u</span><span>s</span><span>h</span><span>i</span><span>.</span>
+    </div>
+  </section>
 
-
-<footer>
-  © 2026 Ayushi — built with Python, data &amp; a little scrapbook tape.
-</footer>
+  <footer>
+    © 2026 Ayushi — built with Python, data &amp; a little scrapbook tape.
+  </footer>
 </div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* tickers */
+  var cube = '<i><svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 2l9 5v10l-9 5-9-5V7z" fill="#a9e6cc" stroke="#201d1b" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 7l9 5 9-5M12 12v10" fill="none" stroke="#201d1b" stroke-width="1.8" stroke-linejoin="round"/></svg></i>';
+  function fill(id, words){
+    var el = document.getElementById(id); if(!el) return;
+    var one = ''; for(var r=0;r<4;r++){ words.forEach(function(w){ one += '<span>'+w+cube+'</span>'; }); }
+    el.innerHTML = one + one;
+  }
+  fill('tk2', ['python','sql','pandas','power bi','pyspark','kafka','postgresql','typescript','git']);
+
+  /* reveal on scroll + stat count-up */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        e.target.querySelectorAll('.mark').forEach(function(m){ m.classList.add('in'); });
+        e.target.querySelectorAll('[data-count]').forEach(countUp);
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+  document.querySelectorAll('.lead .mark').forEach(function(m){ setTimeout(function(){ m.classList.add('in'); }, 900); });
+
+  function countUp(el){
+    if(reduce) return;
+    var to = parseFloat(el.dataset.count), dec = parseInt(el.dataset.dec||0,10), suf = el.dataset.suf||'';
+    var t0 = performance.now(), dur = 1400;
+    (function step(t){
+      var p = Math.min(1,(t-t0)/dur), e = 1-Math.pow(1-p,3);
+      el.textContent = (to*e).toFixed(dec)+suf;
+      if(p<1) requestAnimationFrame(step); else el.textContent = to.toFixed(dec)+suf;
+    })(t0);
+  }
+
+  /* python REPL typing */
+  var repl = document.getElementById('repl');
+  if(repl && !reduce){
+    var full = repl.dataset.text; repl.textContent = '';
+    var started = false;
+    new IntersectionObserver(function(es,o){
+      if(es[0].isIntersecting && !started){
+        started = true; o.disconnect();
+        var i = 0, cur = '<span class="cur"></span>';
+        (function type(){
+          repl.innerHTML = esc(full.slice(0,i)) + cur;
+          if(i++ < full.length) setTimeout(type, full[i-2]==='\n' ? 260 : 28);
+        })();
+      }
+    },{threshold:.5}).observe(repl);
+  }
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  /* mouse parallax on hero stickers */
+  var hero = document.getElementById('home');
+  var fl = hero.querySelectorAll('.float[data-depth]');
+  if(!reduce){
+    hero.addEventListener('mousemove', function(e){
+      var r = hero.getBoundingClientRect();
+      var x = (e.clientX - r.left)/r.width - .5, y = (e.clientY - r.top)/r.height - .5;
+      fl.forEach(function(f){
+        var d = parseFloat(f.dataset.depth);
+        f.style.transform = 'translate('+(x*d)+'px,'+(y*d)+'px)';
+      });
+    });
+  }
+
+  /* scroll progress + active nav */
+  var prog = document.getElementById('prog');
+  window.addEventListener('scroll', function(){
+    var h = document.documentElement;
+    prog.style.width = (h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  },{passive:true});
+  var links = document.querySelectorAll('.nav-links a');
+  var secs = ['home','about','work','playground','contact'].map(function(id){return document.getElementById(id);});
+  new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href')==='#'+e.target.id); });
+      }
+    });
+  },{rootMargin:'-45% 0px -50% 0px'}).observe && secs.forEach(function(s){
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){ links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href')==='#'+s.id); }); }
+      });
+    },{rootMargin:'-45% 0px -50% 0px'}).observe(s);
+  });
+
+  /* click sparkles */
+  if(!reduce){
+    document.addEventListener('click', function(e){
+      for(var i=0;i<7;i++){
+        var s = document.createElement('span');
+        s.className='spark'; s.textContent='✦';
+        var a = Math.random()*Math.PI*2, d = 30+Math.random()*50;
+        s.style.left=e.clientX+'px'; s.style.top=e.clientY+'px';
+        s.style.setProperty('--x', Math.cos(a)*d+'px'); s.style.setProperty('--y', Math.sin(a)*d+'px');
+        document.body.appendChild(s);
+        setTimeout(function(n){ n.remove(); }.bind(null,s), 800);
+      }
+    });
+  }
+})();
+</script>
 </body>
 </html>
