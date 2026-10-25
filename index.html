@@ -97,7 +97,7 @@
   #home{
     text-align:center; overflow:hidden;
     background:radial-gradient(120% 90% at 50% 0%, #e9f4ee 0%, #cfe9ec 60%, #bfe4ea 100%);
-    padding-top:70px; padding-bottom:0;
+    padding-top:56px; padding-bottom:0;
     border-bottom:2px solid var(--ink);
   }
   .eyebrow-tag{
@@ -107,7 +107,7 @@
   }
   .name{
     margin:18px 0 0; line-height:.9; display:flex; justify-content:center; flex-wrap:wrap; gap:0;
-    font-size:clamp(86px,21vw,260px); user-select:none;
+    font-size:clamp(64px,13vw,150px); user-select:none;
   }
   .name .L{
     display:inline-block; font-family:"Bagel Fat One",sans-serif; font-weight:400;
@@ -127,7 +127,7 @@
   @keyframes drop{from{transform:translateY(-120%) rotate(-25deg); opacity:0}to{transform:none; opacity:1}}
   @keyframes wob{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2.5deg) translateY(-.03em)}}
 
-  .hero-chips{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:22px;}
+  .hero-chips{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:14px;}
   .chip{
     display:inline-flex; align-items:center; gap:6px; border:2px solid var(--ink); padding:5px 13px;
     font-size:12.5px; font-weight:700; background:var(--cream); border-radius:999px;
@@ -138,7 +138,7 @@
   .chip.b{background:var(--blue);} .chip.l{background:var(--lilac);} .chip.o{background:var(--orange);}
   .chip.g{background:var(--green);}
 
-  .lead{max-width:640px; margin:24px auto 0; font-size:clamp(17px,3.2vw,23px); font-weight:600; line-height:1.4; text-wrap:balance;}
+  .lead{max-width:640px; margin:16px auto 0; font-size:clamp(17px,3.2vw,23px); font-weight:600; line-height:1.4; text-wrap:balance;}
   .mark{background-image:linear-gradient(transparent 58%, var(--yellow) 58%); background-size:0% 100%; background-repeat:no-repeat; transition:background-size 1s .6s ease; padding:0 2px;}
   .in .mark,.mark.in{background-size:100% 100%;}
 
@@ -155,7 +155,7 @@
   .btn.out:hover{background:var(--yellow);}
   .btn.pk{background:var(--pink); color:var(--ink);}
   .btn.pk:hover{background:var(--yellow);}
-  .btn-row{display:flex; gap:12px; justify-content:center; margin-top:28px; flex-wrap:wrap;}
+  .btn-row{display:flex; gap:12px; justify-content:center; margin-top:20px; flex-wrap:wrap;}
 
   /* hero floating stickers */
   .float{position:absolute; pointer-events:none; will-change:transform; z-index:1;}
@@ -177,7 +177,7 @@
   /* hero "ground" strip of sticker pills */
   .ground{
     display:flex; justify-content:center; align-items:flex-end; gap:14px; flex-wrap:wrap;
-    margin-top:44px; padding:0 14px 0;
+    margin-top:26px; padding:0 14px 0;
   }
   .ground .sk{
     border:2px solid var(--ink); border-bottom:0; border-radius:26px 26px 0 0; padding:16px 20px 14px;
@@ -250,8 +250,8 @@
     transition:transform .35s cubic-bezier(.3,1.6,.5,1), box-shadow .35s;
   }
   .proj:hover{transform:translate(-3px,-4px) rotate(-.4deg); box-shadow:12px 12px 0 var(--ink);}
-  @media(min-width:900px){.proj{grid-template-columns:1.1fr 1fr;}}
-  .pn{padding:28px;}
+  @media(min-width:900px){.proj{grid-template-columns:1.1fr 1fr; min-height:600px;}}
+  .pn{padding:28px; display:flex; flex-direction:column;}
   @media(min-width:768px){.pn{padding:40px;}}
   .tint{background:var(--c,var(--yellow));}
   .paper{background:var(--cream);}
@@ -268,7 +268,7 @@
   .pdesc{font-size:15px; line-height:1.7; margin:0;}
   .pchips{display:flex; flex-wrap:wrap; gap:7px; margin-top:18px;}
   .pchips .chip{font-size:12px; padding:4px 12px;}
-  .plinks{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px;}
+  .plinks{display:flex; flex-wrap:wrap; gap:10px; margin-top:auto; padding-top:22px;}
   .plinks .btn{padding:10px 18px; font-size:11px; box-shadow:3px 3px 0 var(--ink);}
   .blist{margin:0; padding:0; list-style:none; font-size:14.5px; line-height:1.65;}
   .blist li{padding:5px 0 5px 22px; position:relative;}
@@ -285,7 +285,7 @@
   .shot{background:var(--cream); border:2px solid var(--ink); border-radius:16px; padding:6px; overflow:hidden;}
   .shot img{width:100%; display:block; border-radius:10px; transition:transform .6s ease;}
   .shot:hover img{transform:scale(1.04);}
-  .shot img.fixed{height:360px; object-fit:contain; background:#f5f5f7;}
+  .shot img.fixed{height:clamp(220px,34vw,340px); object-fit:contain; background:#f5f5f7;}
   .cap{font-size:14px; line-height:1.55; margin:14px 0 0;}
 
   /* ===== tools ===== */
@@ -349,6 +349,18 @@
   /* progress bar */
   .prog{position:fixed; top:0; left:0; height:5px; width:0; background:linear-gradient(90deg,var(--pink),var(--yellow),var(--mint),var(--blue)); z-index:200; border-bottom:1.5px solid var(--ink);}
 
+  @media(max-height:760px) and (min-width:900px){
+    #home{padding-top:44px; padding-bottom:36px;}
+    .name{font-size:clamp(60px,11vw,120px);}
+    .ground{display:none;}
+  }
+  @media(max-width:700px){
+    #home{padding-top:50px;}
+    .name{font-size:clamp(60px,22vw,110px);}
+    .ground .sk{padding:10px 14px 8px; font-size:13px;}
+    .ground .sk:nth-child(2),.ground .sk:nth-child(4){padding-top:14px;}
+    .ground{margin-top:18px; gap:8px;}
+  }
   @media(prefers-reduced-motion:reduce){
     *{animation:none !important; transition:none !important;}
     .rv{opacity:1; transform:none;}
@@ -568,7 +580,7 @@
         <div class="pn tint" style="--c:var(--green);">
           <p class="lab" style="margin:0 0 12px;">project preview</p>
           <div class="shot">
-            <img src="images/bi-portal-preview.png" alt="BI Portal project">
+            <img class="fixed" src="images/bi-portal-preview.png" alt="BI Portal project">
           </div>
           <div class="plinks">
             <a class="btn" href="https://github.com/ayushi771/bi-portal" target="_blank" rel="noreferrer">GitHub ↗</a>
